@@ -13,15 +13,15 @@ Stefán Carl Peiser - (scg2@hi.is)
 
 
 ##User stories
-*As a passenger, I want to be able to see if there are enough available
+* As a passenger, I want to be able to see if there are enough available
 seats on the plane for my family, so I'll know if we can travel together.  
 
 
-*As a passenger, I want to be able to see what the cheapest flights are
+* As a passenger, I want to be able to see what the cheapest flights are
 for the place I'm traveling to, so I can purchase the cheapest flight.
 
-*As a passenger, I want to be able to see flights that can accommodate
+* As a passenger, I want to be able to see flights that can accommodate
 handicapped people, so I am able to access the flight since I'm wheelchair bound.
 
-*As a passenger, I want to see if there are cheaper flights around the date
+* As a passenger, I want to see if there are cheaper flights around the date
 that I picked, so I can possibly save more money $$$$$$$.
