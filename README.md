@@ -26,15 +26,20 @@ handicapped people, so I am able to access the flight since I'm wheelchair bound
 * As a passenger, I want to see if there are cheaper flights around the date
 that I picked, so I can possibly save more money $$$$$$$.
 
-* As a business owner that travels a lot for work, I want to be able to find the 
+* As a business owner that travels a lot for work, I want to be able to find the
 cheapest flights available to save my company money.
 
-* As a passanger that often has to travel on short notice, I want to be able to 
+* As a passenger that often has to travel on short notice, I want to be able to
 find relevant flights on short notice so that I won't miss my appointments.
 
-* As a person that's not good with computers I want to be able to find flights and 
+* As a person that's not good with computers I want to be able to find flights and
 tickets easily so that I don't make any mistakes.
 
-* As a person of comfort, I want to only see flights that offer business class seats 
+* As a person of comfort, I want to only see flights that offer business class seats
 so that the flight will be more enjoyable.
 
+* As a developer, I want to have easy access to the data concerning the flights
+so I can create more legible code to process that data.
+
+* As a developer, I want to be able to easily add my own functions and code
+to the existing code so that more features can be added in the future.
