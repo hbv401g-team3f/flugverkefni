@@ -16,7 +16,6 @@ Stefán Carl Peiser - (scg2@hi.is)
 * As a passenger, I want to be able to see if there are enough available
 seats on the plane for my family, so I'll know if we can travel together.  
 
-
 * As a passenger, I want to be able to see what the cheapest flights are
 for the place I'm traveling to, so I can purchase the cheapest flight.
 
@@ -43,3 +42,12 @@ so I can create more legible code to process that data.
 
 * As a developer, I want to be able to easily add my own functions and code
 to the existing code so that more features can be added in the future.
+
+* As a passenger, I want everything to be legible and uncluttered so that I
+can correctly read the content provided since I possess reading disabilities.
+
+* As a developer, I want the code to be consistent in style to increase
+legibility so that I can understand the code quicker and better.
+
+* As a passenger, I want to be able to check on flights without experiencing
+much lag so that I do not get annoyed or frustrated.
