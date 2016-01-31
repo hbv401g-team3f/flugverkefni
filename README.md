@@ -51,3 +51,13 @@ legibility so that I can understand the code quicker and better.
 
 * As a passenger, I want to be able to check on flights without experiencing
 much lag so that I do not get annoyed or frustrated.
+
+* As a user, I want to be able to use the application even though my computer
+is not top of the line, so I am not excluded from the user base.
+
+* As a marketing manager, I want to have access to the data regarding sold
+flight tickets, so that I can effectively create better marketing strategies.
+
+* As a passenger, I want the application to have an easily understandable and
+intuitive interface, so that I can navigate the application even though I am
+not very proficient in the language used.
