@@ -23,10 +23,7 @@ for the place I'm traveling to, so I can purchase the cheapest flight.
 handicapped people, so I am able to access the flight since I'm wheelchair bound.
 
 * As a passenger, I want to see if there are cheaper flights around the date
-that I picked, so I can possibly save more money $$$$$$$.
-
-* As a business owner that travels a lot for work, I want to be able to find the
-cheapest flights available to save my company money.
+that I picked, so I can possibly save more money.
 
 * As a passenger that often has to travel on short notice, I want to be able to
 find relevant flights on short notice so that I won't miss my appointments.
@@ -61,3 +58,16 @@ flight tickets, so that I can effectively create better marketing strategies.
 * As a passenger, I want the application to have an easily understandable and
 intuitive interface, so that I can navigate the application even though I am
 not very proficient in the language used.
+
+* As a passenger, I want to be able to choose an aisle seat, so that I can 
+have easier access to the lavatory and be able to stand up without bothering 
+the passengers next to me. 
+
+* As a passenger, I want to see which flights offer Wi-Fi onboard, so that 
+I will be able to read and reply to emails during the flight.
+
+* As a passenger that travels a lot for business, I want to see direct flights first, 
+so I can spend as little time as possible on travelling. 
+
+* As a passenger, I want to see if meals are included during the flight, so I will not 
+have to think about buying or bringing food. 
