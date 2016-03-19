@@ -43,5 +43,11 @@ public class ConnectFlight {
 	public void setConnDepartTime(String connDepartTime) {
 		this.connDepartTime = connDepartTime;
 	}
+	public int getConnGate() {
+		return connGate;
+	}
+	public void setConnGate(int connGate) {
+		this.connGate = connGate;
+	}
 		
 }

@@ -1,4 +1,5 @@
 package models;
+import java.util.ArrayList;
 
 public class Flight {
 	// PRIVATE VARIABLES
@@ -20,12 +21,12 @@ public class Flight {
 	private PassengerLuxuries passengerLuxuries;
 	
 	// CONSTRUCTOR
-	public Flight(String date, int price, String flightNumber, String departureLoc, String departureTime, 
+	public Flight(String String, int price, String flightNumber, String departureLoc, String departureTime, 
 			String depAirportId, String arrivalLoc, String arrivalTime, String arrAirportId, 
 			String gate, int numSeats, int bookedSeats, int numSagaSeats, int bookedSagaSeats, 
-			String[] connectFlight, boolean[] passengerLuxBool, int[] passengerLuxInt) {
+			Object[] connectFlight, Object[] passengerLuxuries) {
 		
-		this.date = date;
+		this.String = String;
 		this.price = price;
 		this.flightNumber = flightNumber;
 		this.departureLoc = departureLoc;
@@ -41,23 +42,23 @@ public class Flight {
 		this.bookedSagaSeats = bookedSagaSeats;
 		this.connectFlight = new ConnectFlight(connectFlight[0], connectFlight[1], 
 											   connectFlight[2], connectFlight[3]);
-		this.passengerLuxuries = new PassengerLuxuries(passengerLuxBool[0], passengerLuxBool[1],
-													   passengerLuxInt[0], passengerLuxInt[1]);
+		this.passengerLuxuries = new PassengerLuxuries(passengerLuxuries[0], passengerLuxuries[1],
+													   passengerLuxuries[2], passengerLuxuries[3]);
 		
 	}
 	
 	// PRIVATE METHODS
 	private boolean isConnectedFlight() {
-		return connectFlight == null;
+		// ToDo...
 	}
 	
 	// GET/SET METHODS
-	public String getDate() {
-		return date;
+	public String getString() {
+		return String;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setString(String String) {
+		this.String = String;
 	}
 
 	public int getPrice() {

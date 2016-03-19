@@ -6,6 +6,7 @@ public class ConnectFlight {
 	private String connArrivalTime;
 	private String connAirportId;
 	private String connDepartTime;
+	private int connGate;
 	
 	// CONSTRUCTOR
 	public ConnectFlight(String connLoc, String connArrivalTime, String connAirportId,
@@ -42,6 +43,12 @@ public class ConnectFlight {
 	}
 	public void setConnDepartTime(String connDepartTime) {
 		this.connDepartTime = connDepartTime;
+	}
+	public int getConnGate() {
+		return connGate;
+	}
+	public void setConnGate(int connGate) {
+		this.connGate = connGate;
 	}
 		
 }
