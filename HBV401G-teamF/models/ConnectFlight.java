@@ -1,6 +1,7 @@
 package models;
 
 public class ConnectFlight {
+	
 	// PRIVATE VARIABLES
 	private String connLoc;
 	private String connArrivalTime;
