@@ -1,0 +1,141 @@
+package models;
+import java.util.Date;
+
+public class Flight {
+	// PRIVATE VARIABLES
+	private Date date;
+	private int price;
+	private String flightNumber;
+	private String departureLoc;
+	private Date departureTime;
+	private String depAirportId;
+	private String arrivalLoc;
+	private Date arrivalTime;
+	private String arrAirportId;
+	private String gate;
+	private int numSeats;
+	private int bookedSeats;
+	private int numSagaSeats;
+	private int bookedSagaSeats;
+	private ConnectFlight connectFlight;
+	
+	// CONSTRUCTOR
+	public Flight(Date date, int price, String flightNumber,
+			String departureLoc, departureTime : Date, depAirportId : String, arrivalLoc : String, arrivalTime : Date, ArrAirportId : String, gate : String, numSeats : int, bookedSeats : int, 
+			numSagaSeats: int, bookedSagaSeats: int)
+	
+	// GET/SET METHODS
+	private Date getDate() {
+		return date;
+	}
+
+	private void setDate(Date date) {
+		this.date = date;
+	}
+
+	private int getPrice() {
+		return price;
+	}
+
+	private void setPrice(int price) {
+		this.price = price;
+	}
+
+	private String getFlightNumber() {
+		return flightNumber;
+	}
+
+	private void setFlightNumber(String flightNumber) {
+		this.flightNumber = flightNumber;
+	}
+
+	private String getDepartureLoc() {
+		return departureLoc;
+	}
+
+	private void setDepartureLoc(String departureLoc) {
+		this.departureLoc = departureLoc;
+	}
+
+	private Date getDepartureTime() {
+		return departureTime;
+	}
+
+	private void setDepartureTime(Date departureTime) {
+		this.departureTime = departureTime;
+	}
+
+	private String getDepAirportId() {
+		return depAirportId;
+	}
+
+	private void setDepAirportId(String depAirportId) {
+		this.depAirportId = depAirportId;
+	}
+
+	private String getArrivalLoc() {
+		return arrivalLoc;
+	}
+
+	private void setArrivalLoc(String arrivalLoc) {
+		this.arrivalLoc = arrivalLoc;
+	}
+
+	private Date getArrivalTime() {
+		return arrivalTime;
+	}
+
+	private void setArrivalTime(Date arrivalTime) {
+		this.arrivalTime = arrivalTime;
+	}
+
+	private String getArrAirportId() {
+		return arrAirportId;
+	}
+
+	private void setArrAirportId(String arrAirportId) {
+		this.arrAirportId = arrAirportId;
+	}
+
+	private String getGate() {
+		return gate;
+	}
+
+	private void setGate(String gate) {
+		this.gate = gate;
+	}
+
+	private int getNumSeats() {
+		return numSeats;
+	}
+
+	private void setNumSeats(int numSeats) {
+		this.numSeats = numSeats;
+	}
+
+	private int getBookedSeats() {
+		return bookedSeats;
+	}
+
+	private void setBookedSeats(int bookedSeats) {
+		this.bookedSeats = bookedSeats;
+	}
+
+	private int getNumSagaSeats() {
+		return numSagaSeats;
+	}
+
+	private void setNumSagaSeats(int numSagaSeats) {
+		this.numSagaSeats = numSagaSeats;
+	}
+
+	private int getBookedSagaSeats() {
+		return bookedSagaSeats;
+	}
+
+	private void setBookedSagaSeats(int bookedSagaSeats) {
+		this.bookedSagaSeats = bookedSagaSeats;
+	}
+	
+	
+}
