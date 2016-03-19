@@ -15,20 +15,11 @@ public class SearchEngine {
 		DBConnection = new DatabaseRetriever();
 	}
 	
-	
-	private void extractDataFromResultSet(ResultSet  results) throws SQLException{
-		flightList = new ArrayList<Flight>();
 		
-		while(results.next()){
-			//saekja dot.		
-			flightList.add(new Flight());			
-		}		
-	}
-	
 	public ArrayList<Flight> searchFlightByCriteria(String departureDate, String returnDate, String departureLocation, String returnLocation, int passengerQty ){
 		
 		
-		ResultSet flightResults = DBConnection.retrieveFlightsByCriteria(departureDate, returnDate, departureLocation, returnLocation, passengerQty);
+		ArrayList<Flight> flightResults = DBConnection.retrieveFlightsByCriteria(departureDate, returnDate, departureLocation, returnLocation, passengerQty);
 		
 		extractDataFromResultSet(flightResults);		
 	
