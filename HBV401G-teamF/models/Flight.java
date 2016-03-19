@@ -1,6 +1,7 @@
 package models;
 
 public class Flight {
+	
 	// PRIVATE VARIABLES
 	private String date;
 	private int price;
@@ -39,8 +40,11 @@ public class Flight {
 		this.bookedSeats = bookedSeats;
 		this.numSagaSeats = numSagaSeats;
 		this.bookedSagaSeats = bookedSagaSeats;
+		
+		// Create an instance of PassengerLuxuries and ConnectFlight objects
 		this.connectFlight = new ConnectFlight(connectFlight[0], connectFlight[1], 
 											   connectFlight[2], connectFlight[3]);
+		
 		this.passengerLuxuries = new PassengerLuxuries(passengerLuxBool[0], passengerLuxBool[1],
 													   passengerLuxInt[0], passengerLuxInt[1]);
 		
@@ -163,6 +167,5 @@ public class Flight {
 	public void setBookedSagaSeats(int bookedSagaSeats) {
 		this.bookedSagaSeats = bookedSagaSeats;
 	}
-	
 	
 }
