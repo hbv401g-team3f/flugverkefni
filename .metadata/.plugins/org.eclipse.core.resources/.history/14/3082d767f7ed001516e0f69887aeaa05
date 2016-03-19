@@ -1,15 +1,16 @@
 package models;
+import org.eclipse.swt.widgets.DateTime;
 
 public class Flight {
 	// PRIVATE VARIABLES
-	private String String;
+	private DateTime DateTime;
 	private int price;
 	private String flightNumber;
 	private String departureLoc;
-	private String departureTime;
+	private DateTime departureTime;
 	private String depAirportId;
 	private String arrivalLoc;
-	private String arrivalTime;
+	private DateTime arrivalTime;
 	private String arrAirportId;
 	private String gate;
 	private int numSeats;
@@ -19,12 +20,12 @@ public class Flight {
 	private ConnectFlight connectFlight;
 	
 	// CONSTRUCTOR
-	public Flight(String String, int price, String flightNumber, String departureLoc, 
-			String departureTime, String depAirportId, String arrivalLoc, 
-			String arrivalTime, String arrAirportId, String gate, int numSeats, 
+	public Flight(DateTime DateTime, int price, String flightNumber, String departureLoc, 
+			DateTime departureTime, String depAirportId, String arrivalLoc, 
+			DateTime arrivalTime, String arrAirportId, String gate, int numSeats, 
 			int bookedSeats, int numSagaSeats, int bookedSagaSeats) {
 		
-		this.String = String;
+		this.DateTime = DateTime;
 		this.price = price;
 		this.flightNumber = flightNumber;
 		this.departureLoc = departureLoc;
@@ -47,12 +48,12 @@ public class Flight {
 	}
 	
 	// GET/SET METHODS
-	public String getString() {
-		return String;
+	public DateTime getDateTime() {
+		return DateTime;
 	}
 
-	public void setString(String String) {
-		this.String = String;
+	public void setDateTime(DateTime DateTime) {
+		this.DateTime = DateTime;
 	}
 
 	public int getPrice() {
@@ -79,11 +80,11 @@ public class Flight {
 		this.departureLoc = departureLoc;
 	}
 
-	public String getDepartureTime() {
+	public DateTime getDepartureTime() {
 		return departureTime;
 	}
 
-	public void setDepartureTime(String departureTime) {
+	public void setDepartureTime(DateTime departureTime) {
 		this.departureTime = departureTime;
 	}
 
@@ -103,11 +104,11 @@ public class Flight {
 		this.arrivalLoc = arrivalLoc;
 	}
 
-	public String getArrivalTime() {
+	public DateTime getArrivalTime() {
 		return arrivalTime;
 	}
 
-	public void setArrivalTime(String arrivalTime) {
+	public void setArrivalTime(DateTime arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
 

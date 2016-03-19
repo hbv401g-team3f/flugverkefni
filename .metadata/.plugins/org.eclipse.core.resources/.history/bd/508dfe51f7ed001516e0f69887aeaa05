@@ -1,9 +1,10 @@
 package models;
+import org.eclipse.swt.widgets.DateTime;
 
 public class ConnectFlight {
 	// PRIVATE VARIABLES
 	private String connLoc;
-	private String connArrivalTime;
+	private DateTime connArrivalTime;
 	private String connAirportId;
 	private String connDepartTime;
 	private int connGate;
@@ -15,10 +16,10 @@ public class ConnectFlight {
 	public void setConnLoc(String connLoc) {
 		this.connLoc = connLoc;
 	}
-	public String getConnArrivalTime() {
+	public DateTime getConnArrivalTime() {
 		return connArrivalTime;
 	}
-	public void setConnArrivalTime(String connArrivalTime) {
+	public void setConnArrivalTime(DateTime connArrivalTime) {
 		this.connArrivalTime = connArrivalTime;
 	}
 	public String getConnAirportId() {
