@@ -68,7 +68,7 @@ public class UserInterface {
 		dateTime_1.setBounds(318, 49, 100, 22);
 		
 		Label lblDepartureDate = new Label(shlFlugLeitarvl, SWT.NONE);
-		lblDepartureDate.setBounds(45, 28, 88, 15);
+		lblDepartureDate.setBounds(45, 28, 100, 15);
 		lblDepartureDate.setText("Departure date:");
 		
 		Label lblDepartureLocation = new Label(shlFlugLeitarvl, SWT.NONE);
