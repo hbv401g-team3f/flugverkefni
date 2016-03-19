@@ -14,7 +14,7 @@ public class ConnectFlight {
 		
 		this.connLoc = connLoc;
 		this.connArrivalTime = connArrivalTime;
-		this.connAirportId = connAirportId;
+		this.connAirportId = connAirportItd;
 		this.connDepartTime = connDepartTime;
 		
 	}

@@ -9,15 +9,10 @@ public class ConnectFlight {
 	private int connGate;
 	
 	// CONSTRUCTOR
-	public ConnectFlight(String connLoc, String connArrivalTime, String connAirportId,
-						 String connDepartTime) {
-		
-		this.connLoc = connLoc;
-		this.connArrivalTime = connArrivalTime;
-		this.connAirportId = connAirportId;
-		this.connDepartTime = connDepartTime;
-		
-	}
+	public ConnectFlight(String connLoc, String connArrivalTime, String connAirportId,)
+						 String DepartTime) {
+							 
+		}
 	
 	// GET/SET METHODS
 	public String getConnLoc() {

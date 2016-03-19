@@ -17,13 +17,12 @@ public class Flight {
 	private int numSagaSeats;
 	private int bookedSagaSeats;
 	private ConnectFlight connectFlight;
-	private PassengerLuxuries passengerLuxuries;
 	
 	// CONSTRUCTOR
-	public Flight(String String, int price, String flightNumber, String departureLoc, String departureTime, 
-			String depAirportId, String arrivalLoc, String arrivalTime, String arrAirportId, 
-			String gate, int numSeats, int bookedSeats, int numSagaSeats, int bookedSagaSeats, 
-			Array connectFlight, Array passengerLuxuries) {
+	public Flight(String String, int price, String flightNumber, String departureLoc, 
+			String departureTime, String depAirportId, String arrivalLoc, 
+			String arrivalTime, String arrAirportId, String gate, int numSeats, 
+			int bookedSeats, int numSagaSeats, int bookedSagaSeats) {
 		
 		this.String = String;
 		this.price = price;
@@ -39,10 +38,6 @@ public class Flight {
 		this.bookedSeats = bookedSeats;
 		this.numSagaSeats = numSagaSeats;
 		this.bookedSagaSeats = bookedSagaSeats;
-		this.connectFlight = new ConnectFlight(connectFlight[0], connectFlight[1], 
-											   connectFlight[2], connectFlight[3]);
-		this.passengerLuxuries = new PassengerLuxuries(passengerLuxuries[0], passengerLuxuries[1],
-													   passengerLuxuries[2], passengerLuxuries[3]);
 		
 	}
 	

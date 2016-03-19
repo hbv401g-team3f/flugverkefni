@@ -7,17 +7,6 @@ public class PassengerLuxuries {
 	private int priceInFlightPoints;
 	private int flightPointsGained;
 	
-	// CONSTRUCTOR
-	public PassengerLuxuries(boolean wifiAvailable, boolean mealsAvailable, int priceInFlightPoints, 
-							 int flightPointsGained) {
-		
-		this.wifiAvailable = wifiAvailable;
-		this.mealsAvailable = mealsAvailable;
-		this.priceInFlightPoints = priceInFlightPoints;
-		this.flightPointsGained = flightPointsGained;
-		
-	}
-	
 	// GET/SET METHODS
 	public boolean isWifiAvailable() {
 		return wifiAvailable;

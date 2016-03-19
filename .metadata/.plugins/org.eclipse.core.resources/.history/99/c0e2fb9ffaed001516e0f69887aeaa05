@@ -42,7 +42,7 @@ public class Flight {
 		this.connectFlight = new ConnectFlight(connectFlight[0], connectFlight[1], 
 											   connectFlight[2], connectFlight[3]);
 		this.passengerLuxuries = new PassengerLuxuries(passengerLuxuries[0], passengerLuxuries[1],
-													   passengerLuxuries[2], passengerLuxuries[3]);
+													   passengerLuxuries[2], passengerLuxuries[3])
 		
 	}
 	

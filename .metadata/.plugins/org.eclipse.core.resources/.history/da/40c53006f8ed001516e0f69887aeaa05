@@ -8,17 +8,6 @@ public class ConnectFlight {
 	private String connDepartTime;
 	private int connGate;
 	
-	// CONSTRUCTOR
-	public ConnectFlight(String connLoc, String connArrivalTime, String connAirportId,
-						 String connDepartTime) {
-		
-		this.connLoc = connLoc;
-		this.connArrivalTime = connArrivalTime;
-		this.connAirportId = connAirportId;
-		this.connDepartTime = connDepartTime;
-		
-	}
-	
 	// GET/SET METHODS
 	public String getConnLoc() {
 		return connLoc;
