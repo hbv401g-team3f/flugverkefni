@@ -10,34 +10,34 @@ public class ConnectFlight {
 	private int connGate;
 	
 	// GET/SET METHODS
-	public String getConnLoc() {
+	private String getConnLoc() {
 		return connLoc;
 	}
-	public void setConnLoc(String connLoc) {
+	private void setConnLoc(String connLoc) {
 		this.connLoc = connLoc;
 	}
-	public DateTime getConnArrivalTime() {
+	private DateTime getConnArrivalTime() {
 		return connArrivalTime;
 	}
-	public void setConnArrivalTime(DateTime connArrivalTime) {
+	private void setConnArrivalTime(DateTime connArrivalTime) {
 		this.connArrivalTime = connArrivalTime;
 	}
-	public String getConnAirportId() {
+	private String getConnAirportId() {
 		return connAirportId;
 	}
-	public void setConnAirportId(String connAirportId) {
+	private void setConnAirportId(String connAirportId) {
 		this.connAirportId = connAirportId;
 	}
-	public String getConnDepartTime() {
+	private String getConnDepartTime() {
 		return connDepartTime;
 	}
-	public void setConnDepartTime(String connDepartTime) {
+	private void setConnDepartTime(String connDepartTime) {
 		this.connDepartTime = connDepartTime;
 	}
-	public int getConnGate() {
+	private int getConnGate() {
 		return connGate;
 	}
-	public void setConnGate(int connGate) {
+	private void setConnGate(int connGate) {
 		this.connGate = connGate;
 	}
 		

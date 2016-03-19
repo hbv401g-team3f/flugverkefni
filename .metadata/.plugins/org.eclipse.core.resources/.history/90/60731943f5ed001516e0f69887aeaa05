@@ -1,0 +1,10 @@
+package models;
+
+public class PassengerLuxuries {
+	// PRIVATE VARIABLES
+	private boolean wifiAvailable;
+	private boolean mealsAvailable;
+	private int priceInFlightPoints;
+	private int flightPointsGained;
+	
+}
