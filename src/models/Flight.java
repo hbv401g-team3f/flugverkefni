@@ -1,6 +1,6 @@
 package models;
 
-public class Flight implements Comparable{
+public class Flight implements Comparable<Flight>{
 
     // PRIVATE VARIABLES
     private String date;

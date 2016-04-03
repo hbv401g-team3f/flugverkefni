@@ -45,9 +45,9 @@ public class SearchEngine {
             // Determines if the flight is within specified parameters
             boolean flightEligible = true;
             // Desired date restricitions
-            Date dateFromWanted;
-            Date dateToWanted;
-            Date flightDate;
+            Date dateFromWanted = new Date();
+            Date dateToWanted = new Date();
+            Date flightDate = new Date();
             try {
                 dateFromWanted = dateFormat.parse(dateFrom);
                 dateToWanted = dateFormat.parse(dateTo);
