@@ -2,6 +2,10 @@ package test;
 
 import controllers.SearchEngine;
 import models.Flight;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 import java.util.ArrayList;
 
 
@@ -26,13 +30,9 @@ public class SearchEngineTest {
     @Before
     public void setUp() throws Exception {
         searchEngine = new SearchEngine(new DatabaseRetrieverMock());
-
-        flightListLondon = searchEngine.searchFlightByCriteria("London", "02.02.16", "Keflavik", "06.06.16", 10);
-        flightListAprilThird = searchEngine.searchFlightByCriteria("Dont Care", "03.04.16", "Keflavik", "06.06.16", 5);
+        flightListLondon = searchEngine.searchFlightByCriteria("London", "02.02.2016", "Keflavik", "06.06.2016", 10);
+        flightListAprilThird = searchEngine.searchFlightByCriteria("Dont Care", "03.04.2016", "Keflavik", "06.06.2016", 5);
         flightListAll = searchEngine.searchFlightByCriteria("No Preference", "Don't care", "Keflavik", "Don't care", 1);
-        filteredListOne = searchEngine.filterFlightList(flightListAll, null, null, true, true, false);
-        filteredListTwo = searchEngine.filterFlightList(flightListAll, "01.04.16", "04.04.16", false, true, true);
-        filteredListThree = searchEngine.filterFlightList(flightListAll, "10.04.16", "05.05.16", false, false, false);
     }
 
     @After
@@ -44,7 +44,34 @@ public class SearchEngineTest {
 
 
     @Test
-    public void testOne() throws Exception{
-
+    public void testFilterWifiFlights() throws Exception{
+        ArrayList<Flight> filteredWifiList = searchEngine.filterFlightList(flightListAll,"01.01.2016", "30.12.2016",false,true,false,0);
+        for(Flight flight : filteredWifiList){
+            assertEquals(true, flight.getPassengerLuxuries().isWifiAvailable());
+        }
     }
+
+    @Test
+    public void testDescendingOrder() throws Exception{
+        ArrayList<Flight> filteredDescendingList = searchEngine.filterFlightList(flightListAll,"01.01.2016", "30.12.2016",false, false, true, 0);
+        assertTrue(filteredDescendingList.get(0).getPrice() >= filteredDescendingList.get(filteredDescendingList.size()-1).getPrice());
+    }
+
+    @Test
+    public void testSagaAvailability() throws Exception{
+        ArrayList<Flight>  filteredSagaList = searchEngine.filterFlightList(flightListAll,"01.01.2016", "30.12.2016",true,false,false,0);
+        for (Flight flight : filteredSagaList){
+            int numAvailableSagaSeats = flight.getNumSagaSeats()-flight.getBookedSagaSeats();
+            assertTrue(numAvailableSagaSeats > 0);
+        }
+    }
+
+    @Test
+    public void testWithinDateFrame() throws Exception{
+        ArrayList<Flight>  filteredSagaList = searchEngine.filterFlightList(flightListAll,"03.04.2016", "04.04.2016",false,false,false,0);
+    }
+
+
+
+
 }

@@ -14,9 +14,6 @@ import test.DatabaseRetrieverMock;
 
 /**
  * @author stefa
- * The SearchEngine class is not ready yet - so it is
- * temporarily an interface so JUnit testing can be done
- * all unfinished methods and such will be commented out
  */
 public class SearchEngine {
 
