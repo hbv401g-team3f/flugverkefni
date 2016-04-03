@@ -14,18 +14,17 @@ import java.util.Date;
 import static org.junit.Assert.*;
 
 /**
- * Created by stefa on 4/3/2016.
+ * This is a test class for the SearchEngine class
+ * seeing that the DataBase retriever class isn't
+ * ready yet, we use a MockConnection, seeing that
+ * there is no database connection the most important
+ * function
  */
 public class SearchEngineTest {
 
 
     private SearchEngine searchEngine;
-    private ArrayList<Flight> flightListLondon;;
-    private ArrayList<Flight> flightListAprilThird;
     private ArrayList<Flight> flightListAll;
-    private ArrayList<Flight> filteredListOne;
-    private ArrayList<Flight> filteredListTwo;
-    private ArrayList<Flight> filteredListThree;
     private SimpleDateFormat format;
 
 
@@ -33,15 +32,11 @@ public class SearchEngineTest {
     public void setUp() throws Exception {
         searchEngine = new SearchEngine(new DatabaseRetrieverMock());
         format = new SimpleDateFormat("dd.MM.yyyy");
-        flightListLondon = searchEngine.searchFlightByCriteria("London", "02.02.2016", "Keflavik", "06.06.2016", 10);
-        flightListAprilThird = searchEngine.searchFlightByCriteria("Dont Care", "03.04.2016", "Keflavik", "06.06.2016", 5);
-        flightListAll = searchEngine.searchFlightByCriteria("No Preference", "Don't care", "Keflavik", "Don't care", 1);
+        flightListAll = searchEngine.searchFlightByCriteria("No Preference", "No Preference", "Keflavik", "No Preference", 1);
     }
 
     @After
     public void tearDown() throws Exception {
-        flightListLondon.clear();
-        flightListAprilThird.clear();
         flightListAll.clear();
     }
 
@@ -57,7 +52,11 @@ public class SearchEngineTest {
     @Test
     public void testDescendingOrder() throws Exception{
         ArrayList<Flight> filteredDescendingList = searchEngine.filterFlightList(flightListAll,"01.01.2016", "30.12.2016",false, false, true, 0);
-        assertTrue(filteredDescendingList.get(0).getPrice() >= filteredDescendingList.get(filteredDescendingList.size()-1).getPrice());
+        int oldPrice = 1000000000;
+        for (Flight flight : filteredDescendingList){
+            assertTrue(flight.getPrice() <= oldPrice);
+            oldPrice = flight.getPrice();
+        }
     }
 
     @Test
@@ -82,19 +81,4 @@ public class SearchEngineTest {
             assertTrue(dateFrom.compareTo(flightDate) <= 0 && dateTo.compareTo(flightDate) >= 0);
         }
     }
-
-    @Test
-    public void testOnlyLondonLocations() throws Exception{
-        for (Flight flight : flightListLondon){
-            assertEquals("London", flight.getArrivalLoc());
-        }
-    }
-
-    @Test
-    public void testOnlyAprilThirdFlightsWithoutFilter() throws Exception{
-        for (Flight flight : flightListAprilThird){
-            assertEquals("03.04.2015", flight.getDate());
-        }
-    }
-
 }

@@ -75,7 +75,10 @@ public class SearchEngine {
                 flightEligible = false;
             }
 
-            filteredFlightList.add(flight);
+            if(flightEligible){
+                filteredFlightList.add(flight);
+            }
+
         }
 
         // Determine how to sort list of flights
