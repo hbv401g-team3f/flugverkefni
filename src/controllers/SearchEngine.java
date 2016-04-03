@@ -4,7 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 */
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 import models.Flight;
 import test.DatabaseRetrieverMock;
 
@@ -21,7 +24,7 @@ public class SearchEngine {
     private ArrayList<Flight> flightList;
     private ArrayList<Flight> filteredFlightList;
     private int passengerQty;
-
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy")
 	public SearchEngine(DatabaseRetriever DBConnection){
 		this.DBConnection = DBConnection;
 	}
@@ -40,8 +43,8 @@ public class SearchEngine {
             // Determines if the flight is within specified parameters
             boolean flightEligible = true;
             // Desired date restricitions
-            int dateFromWantedInt = Integer.parseInt(dateFrom);
-            int dateToWantedInt = Integer.parseInt(dateTo);
+            Date dateFromWantedInt = dateFormat.parse(dateFrom);
+            Date dateToWantedInt = dateFormat.parse(dateTo);
             // Dates of flight available
             // TODO
 
@@ -52,6 +55,12 @@ public class SearchEngine {
             }
 
             // Reject flight if client wants wifi but none is available
+            if(wantWifi && flight.getPassengerLuxuries().isWifiAvailable()){
+                flightEligible = false;
+            }
+
+
+
 
         }
     }
