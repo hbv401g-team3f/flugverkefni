@@ -24,8 +24,9 @@ public class SearchEngine {
     private ArrayList<Flight> flightList;
     private ArrayList<Flight> filteredFlightList;
     private int passengerQty;
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy")
-	public SearchEngine(DatabaseRetriever DBConnection){
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy")
+
+    public SearchEngine(DatabaseRetriever DBConnection){
 		this.DBConnection = DBConnection;
 	}
 
@@ -43,11 +44,13 @@ public class SearchEngine {
             // Determines if the flight is within specified parameters
             boolean flightEligible = true;
             // Desired date restricitions
-            Date dateFromWantedInt = dateFormat.parse(dateFrom);
-            Date dateToWantedInt = dateFormat.parse(dateTo);
+            Date dateFromWanted = dateFormat.parse(dateFrom);
+            Date dateToWanted = dateFormat.parse(dateTo);
+            Date flightDate = dateFormat.parse(flight.getDate());
             // Dates of flight available
-            // TODO
-
+            if(dateFromWanted.compareTo(flightDate) >= 0 && dateToWanted.compareTo(flightDate) <= 0){
+                flightEligible = false;
+            }
             // Reject flight if client wants Saga class seats but none are available
             int availableSagaSeats = flight.getNumSagaSeats() - flight.getBookedSagaSeats();
             if(wantSagaSeats && availableSagaSeats < passengerQty ){

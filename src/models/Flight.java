@@ -3,8 +3,7 @@ package models;
 public class Flight {
 
     // PRIVATE VARIABLES
-    private String dateTo;
-    private String dateFrom;
+    private String date;
     private int price;
     private String flightNumber;
     private String departureLoc;
@@ -21,13 +20,12 @@ public class Flight {
     private PassengerLuxuries passengerLuxuries;
 
     // CONSTRUCTOR
-    public Flight(String dateTo, String dateFrom, int price, String flightNumber, String departureLoc, String departureTime,
+    public Flight(String date, int price, String flightNumber, String departureLoc, String departureTime,
                   String depAirportId, String arrivalLoc, String arrivalTime, String arrAirportId,
                   int numSeats, int bookedSeats, int numSagaSeats, int bookedSagaSeats,
                   String[] connectFlight, boolean[] passengerLuxBool, int[] passengerLuxInt) {
 
-        this.dateTo = dateTo;
-        this.setDateFrom(dateFrom);
+        this.date = date;
         this.price = price;
         this.flightNumber = flightNumber;
         this.departureLoc = departureLoc;
@@ -61,17 +59,6 @@ public class Flight {
     }
 
     // GET/SET METHODS
-    public String getDateTo() {
-        return dateTo;
-    }
-
-    public void setDateTo(String dateTo) {
-        this.dateTo = dateTo;
-    }
-
-    public String getDateFrom() { return dateFrom; }
-
-    public void setDateFrom(String dateFrom) { this.dateFrom = dateFrom; }
 
     public int getPrice() {
         return price;
@@ -176,4 +163,7 @@ public class Flight {
     public void setPassengerLuxuries(PassengerLuxuries passengerLuxuries) { this.passengerLuxuries = passengerLuxuries; }
 
 
+    public String getDate() {
+        return date;
+    }
 }
