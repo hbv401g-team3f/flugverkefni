@@ -42,5 +42,5 @@ public class DatabaseRetrieverMock implements DatabaseRetriever {
         return flightList;
     }
 
-// Yall need some moathfuckin lenny faces here
+// All your lenny faces are belong to me
 }
