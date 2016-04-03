@@ -1,4 +1,4 @@
-package test;
+package mockObjects;
 
 import java.util.ArrayList;
 
@@ -42,5 +42,7 @@ public class DatabaseRetrieverMock implements DatabaseRetriever {
         return flightList;
     }
 
-// All your lenny faces are belong to me
+    public ArrayList<Flight> queryDatabase(String query) {
+        return null;
+    }
 }
