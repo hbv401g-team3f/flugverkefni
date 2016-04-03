@@ -5,6 +5,14 @@ import java.util.ArrayList;
 import controllers.DatabaseRetriever;
 import models.Flight;
 
+/**
+ * Created by - Flight Group - HBV401G
+ * Spring 2016
+ *
+ * This is a mock class/object to serve the as a stand in for the
+ * database, seeing that class is not ready.
+ *
+ */
 public class DatabaseRetrieverMock implements DatabaseRetriever {
 
     private ArrayList<Flight> flightList = new ArrayList<Flight>();
@@ -13,6 +21,17 @@ public class DatabaseRetrieverMock implements DatabaseRetriever {
     private int[] passIntArray;
 
 
+    /**
+     *  This mock function creates a couple of flights
+     *  based on predetermined criteria
+     *
+     * @param travelDate
+     * @param returnDate
+     * @param travelDestination
+     * @param returnLocation
+     * @param passengerQty
+     * @return flightList
+     */
     public ArrayList<Flight> retrieveFlightsByCriteria(String travelDate,
                                                        String returnDate, String travelDestination, String returnLocation, int passengerQty) {
         connectArray = null;
@@ -39,6 +58,13 @@ public class DatabaseRetrieverMock implements DatabaseRetriever {
 
     }
 
+
+    /**
+     * There is no database connection, so this function will
+     * only return null
+     * @param query
+     * @return
+     */
     public ArrayList<Flight> queryDatabase(String query) {
         return null;
     }

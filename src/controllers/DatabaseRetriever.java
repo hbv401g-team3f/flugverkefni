@@ -8,6 +8,13 @@ import models.Flight;
 
 import javax.lang.model.type.ArrayType;
 
+
+/**
+ * This class isn't ready yet so
+ * it is temporarily an interface so it
+ * can serve as a guideline for the mock
+ * database connection.
+ */
 public interface DatabaseRetriever {
 
     /*
@@ -72,9 +79,24 @@ public interface DatabaseRetriever {
 	*/
 
 
+    /**
+     * Queries the database based on a given query
+     * @param query
+     * @return
+     */
     public ArrayList<Flight> queryDatabase(String query);
 
 
+    /**
+     * Searches for flights depending on given parameters, returns an ArrayList with
+     * the search results.
+     * @param departureDate
+     * @param returnDate
+     * @param departureLocation
+     * @param returnLocation
+     * @param passengerQty
+     * @return
+     */
     public ArrayList<Flight> retrieveFlightsByCriteria(String departureDate, String returnDate,
                                                        String departureLocation, String returnLocation, int passengerQty);
 
