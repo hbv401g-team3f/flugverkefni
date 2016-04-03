@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import models.Flight;
 
+import javax.lang.model.type.ArrayType;
+
 public interface DatabaseRetriever {
 
     /*
@@ -57,9 +59,7 @@ public interface DatabaseRetriever {
         return results;
     }
 
-    */
-    public ArrayList<Flight> retrieveFlightsByCriteria(String departureDate, String returnDate, String departureLocation, String returnLocation, int passengerQty);
-	/*
+    public ArrayList<Flight> retrieveFlightsByCriteria(String departureDate, String returnDate, String departureLocation, String returnLocation, int passengerQty)
 	{
 
 		//Egill - her att thu ad bua til adferd sem byr til fyrirspurnina!
@@ -71,6 +71,12 @@ public interface DatabaseRetriever {
 	}
 	*/
 
+
+    public ArrayList<Flight> queryDatabase(String query);
+
+
+    public ArrayList<Flight> retrieveFlightsByCriteria(String departureDate, String returnDate,
+                                                       String departureLocation, String returnLocation, int passengerQty);
 
 
 }

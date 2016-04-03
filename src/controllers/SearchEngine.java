@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import java.util.ArrayList;
 import models.Flight;
-
+import test.DatabaseRetrieverMock;
 
 
 /**
@@ -15,30 +15,23 @@ import models.Flight;
  * temporarily an interface so JUnit testing can be done
  * all unfinished methods and such will be commented out
  */
-public interface SearchEngine {
+public class SearchEngine {
 
-    //private DatabaseRetriever DBConnection;
-    //private ArrayList<Flight> flightList;
+    private DatabaseRetriever DBConnection;
+    private ArrayList<Flight> flightList;
+    private ArrayList<Flight> filteredFlightList;
 
-	/*
-	public SearchEngine(){
-		DBConnection = new DatabaseRetriever();
+	public SearchEngine(DatabaseRetriever DBConnection){
+		this.DBConnection = DBConnection;
 	}
-	*/
 
+    public ArrayList<Flight> searchFlightByCriteria(String travelDestination, String travelDate, String returnLocation, String returnDate, int passengerQty ){
+        //Todo
+    }
 
-	/*
-	public ArrayList<Flight> searchFlightByCriteria(String departureDate, String returnDate, String departureLocation, String returnLocation, int passengerQty ){
-
-		ArrayList<Flight> flightResults = DBConnection.retrieveFlightsByCriteria(departureDate, returnDate, departureLocation, returnLocation, passengerQty);
-
-		extractDataFromResultSet(flightResults);
-
-		return flightList;
-	}
-	*/
-
-    public ArrayList<Flight> searchFlightByCriteria(String travelDestination, String travelDate, String returnLocation, String returnDate, int passengerQty );
+    public ArrayList<Flight> filterFlightList(String dateFrom, String dateTo, boolean wantSagaSeats, boolean wantWifi, boolean priceDescending){
+        //Todo
+    }
 
 
 }
