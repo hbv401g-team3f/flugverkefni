@@ -1,8 +1,21 @@
 package models;
 
+/**
+ * Created by - Flight Group - HBV401G
+ * Spring 2016
+ *
+ *
+ * Flight class, where each instance of this class
+ * represents one flight, it implements Comparable
+ * so it is possible to sort flights depending on
+ * price criteria.
+ */
 public class Flight implements Comparable<Flight>{
 
-    // PRIVATE VARIABLES
+
+    /**
+     * Instance variables for various flight properties.
+     */
     private String date;
     private int price;
     private String flightNumber;
@@ -19,7 +32,25 @@ public class Flight implements Comparable<Flight>{
     private ConnectFlight connectFlight;
     private PassengerLuxuries passengerLuxuries;
 
-    // CONSTRUCTOR
+    /**
+     * The flight constructor with all of it's properties
+     * @param date
+     * @param price
+     * @param flightNumber
+     * @param departureLoc
+     * @param departureTime
+     * @param depAirportId
+     * @param arrivalLoc
+     * @param arrivalTime
+     * @param arrAirportId
+     * @param numSeats
+     * @param bookedSeats
+     * @param numSagaSeats
+     * @param bookedSagaSeats
+     * @param connectFlight
+     * @param passengerLuxBool
+     * @param passengerLuxInt
+     */
     public Flight(String date, int price, String flightNumber, String departureLoc, String departureTime,
                   String depAirportId, String arrivalLoc, String arrivalTime, String arrAirportId,
                   int numSeats, int bookedSeats, int numSagaSeats, int bookedSagaSeats,
@@ -53,7 +84,11 @@ public class Flight implements Comparable<Flight>{
 
     }
 
-    // COMPARE METHOD
+    /**
+     * This function compares prices between two different flight objects
+     * @param flight1
+     * @return
+     */
     @Override
     public int compareTo(Flight flight1){
         int comparePrice = ((Flight) flight1).getPrice();
@@ -61,13 +96,17 @@ public class Flight implements Comparable<Flight>{
         return comparePrice - this.getPrice();
     }
 
-    // PRIVATE METHODS
+    /**
+     * Returns if the flight is connected or not.
+     * @return
+     */
     private boolean isConnectedFlight() {
         return connectFlight == null;
     }
 
-    // GET/SET METHODS
-
+    /*
+        GET/SET  METHODS
+     */
     public int getPrice() {
         return price;
     }
