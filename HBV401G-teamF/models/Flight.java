@@ -42,11 +42,16 @@ public class Flight {
 		this.bookedSagaSeats = bookedSagaSeats;
 		
 		// Create an instance of PassengerLuxuries and ConnectFlight objects
-		this.connectFlight = new ConnectFlight(connectFlight[0], connectFlight[1], 
+		if(connectFlight == null){
+			this.connectFlight = null;
+		}
+		else{
+			this.connectFlight = new ConnectFlight(connectFlight[0], connectFlight[1], 
 											   connectFlight[2], connectFlight[3]);
+		}
 		
-		this.passengerLuxuries = new PassengerLuxuries(passengerLuxBool[0], passengerLuxBool[1],
-													   passengerLuxInt[0], passengerLuxInt[1]);
+		this.setPassengerLuxuries(new PassengerLuxuries(passengerLuxBool[0], passengerLuxBool[1],
+													   passengerLuxInt[0], passengerLuxInt[1]));
 		
 	}
 	
@@ -166,6 +171,14 @@ public class Flight {
 
 	public void setBookedSagaSeats(int bookedSagaSeats) {
 		this.bookedSagaSeats = bookedSagaSeats;
+	}
+
+	public PassengerLuxuries getPassengerLuxuries() {
+		return passengerLuxuries;
+	}
+
+	public void setPassengerLuxuries(PassengerLuxuries passengerLuxuries) {
+		this.passengerLuxuries = passengerLuxuries;
 	}
 	
 }
