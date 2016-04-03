@@ -12,7 +12,7 @@ public class SearchEngineTest {
 
 
 	private SearchEngineMock mockSearchEngine = new SearchEngineMock();
-	ArrayList<Flight> flightListLondon;;
+	ArrayList<Flight> flightListLondon;
 	ArrayList<Flight> flightListAprilThird;
 	ArrayList<Flight> flightListAll;
 

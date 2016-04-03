@@ -6,8 +6,9 @@ import java.util.ArrayList;
 
 import models.Flight;
 
-public class DatabaseRetriever {
+public interface DatabaseRetriever {
 	
+	/*
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	static final String DATABASE_URL = "jdbc:mysql://localhost/thingy";
 	
@@ -56,9 +57,11 @@ public class DatabaseRetriever {
 		return results;
 	}
 	
-	
-	public ArrayList<Flight> retrieveFlightsByCriteria(String departureDate, String returnDate, String departureLocation, String returnLocation, int passengerQty){
-
+	*/
+	public ArrayList<Flight> retrieveFlightsByCriteria(String departureDate, String returnDate, String departureLocation, String returnLocation, int passengerQty);
+	/*
+	{
+		
 		//Egill - her att thu ad bua til adferd sem byr til fyrirspurnina!
 		String queryString = "Egill her a ad koma fyrirspurn!";		
 
@@ -66,6 +69,7 @@ public class DatabaseRetriever {
 		ArrayList<Flight> flightList = queryDatabase(queryString);		
 		return flightList;
 	}
+	*/
 	
 	
 
