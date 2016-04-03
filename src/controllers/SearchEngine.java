@@ -20,17 +20,40 @@ public class SearchEngine {
     private DatabaseRetriever DBConnection;
     private ArrayList<Flight> flightList;
     private ArrayList<Flight> filteredFlightList;
+    private int passengerQty;
 
 	public SearchEngine(DatabaseRetriever DBConnection){
 		this.DBConnection = DBConnection;
 	}
 
     public ArrayList<Flight> searchFlightByCriteria(String travelDestination, String travelDate, String returnLocation, String returnDate, int passengerQty ){
-        //Todo
+        flightList = DBConnection.retrieveFlightsByCriteria(travelDestination, travelDate, returnLocation, returnDate, passengerQty);
+        this.passengerQty = passengerQty;
+        return flightList;
     }
 
-    public ArrayList<Flight> filterFlightList(String dateFrom, String dateTo, boolean wantSagaSeats, boolean wantWifi, boolean priceDescending){
-        //Todo
+    public ArrayList<Flight> filterFlightList(ArrayList<Flight> flightListToFilter, String dateFrom, String dateTo, boolean wantSagaSeats, boolean wantWifi, boolean priceDescending, int maxPrice){
+
+        filteredFlightList = new ArrayList<Flight>();
+
+        for(Flight flight : flightListToFilter){
+            // Determines if the flight is within specified parameters
+            boolean flightEligible = true;
+            // Desired date restricitions
+            int dateFromWantedInt = Integer.parseInt(dateFrom);
+            int dateToWantedInt = Integer.parseInt(dateTo);
+            // Dates of flight available
+            // TODO
+
+            // Reject flight if client wants Saga class seats but none are available
+            int availableSagaSeats = flight.getNumSagaSeats() - flight.getBookedSagaSeats();
+            if(wantSagaSeats && availableSagaSeats < passengerQty ){
+                flightEligible = false;
+            }
+
+            // Reject flight if client wants wifi but none is available
+
+        }
     }
 
 
