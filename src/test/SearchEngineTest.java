@@ -6,7 +6,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 import static org.junit.Assert.*;
@@ -24,12 +26,13 @@ public class SearchEngineTest {
     private ArrayList<Flight> filteredListOne;
     private ArrayList<Flight> filteredListTwo;
     private ArrayList<Flight> filteredListThree;
-
+    private SimpleDateFormat format;
 
 
     @Before
     public void setUp() throws Exception {
         searchEngine = new SearchEngine(new DatabaseRetrieverMock());
+        format = new SimpleDateFormat("dd.MM.yyyy");
         flightListLondon = searchEngine.searchFlightByCriteria("London", "02.02.2016", "Keflavik", "06.06.2016", 10);
         flightListAprilThird = searchEngine.searchFlightByCriteria("Dont Care", "03.04.2016", "Keflavik", "06.06.2016", 5);
         flightListAll = searchEngine.searchFlightByCriteria("No Preference", "Don't care", "Keflavik", "Don't care", 1);
@@ -68,10 +71,29 @@ public class SearchEngineTest {
 
     @Test
     public void testWithinDateFrame() throws Exception{
-        ArrayList<Flight>  filteredSagaList = searchEngine.filterFlightList(flightListAll,"03.04.2016", "04.04.2016",false,false,false,0);
+        String dateFromString = "03.04.2016";
+        String dateToString = "04.04.2016";
+        Date dateFrom = format.parse(dateFromString);
+        Date dateTo = format.parse(dateToString);
+
+        ArrayList<Flight>  filteredDateList = searchEngine.filterFlightList(flightListAll,dateFromString, dateToString,false,false,false,0);
+        for (Flight flight : filteredDateList){
+            assertTrue(dateFrom.compareTo(flight.getDate()) <= 0 && dateTo.compareTo(flight.getDate()) >= 0)
+        }
     }
 
+    @Test
+    public void testOnlyLondonLocations() throws Exception{
+        for (Flight flight : flightListLondon){
+            assertEquals("London", flight.getArrivalLoc());
+        }
+    }
 
-
+    @Test
+    public void testOnlyAprilThirdFlightsWithoutFilter() throws Exception{
+        for (Flight flight : flightListAprilThird){
+            assertEquals("03.04.2015", flight.getDate());
+        }
+    }
 
 }
