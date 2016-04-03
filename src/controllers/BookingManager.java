@@ -6,8 +6,11 @@ public class BookingManager {
     private DatabaseUpdater databaseUpdater = new DatabaseUpdater();
 
     // METHODS
+    /*
     private void updateFlight(Flight flightToBook, int bookedSeatQty) {
         databaseUpdater.updateFlight(flightToBook, bookedSeatQty);
     }
+    */
+
 
 }

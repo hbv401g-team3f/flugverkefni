@@ -78,7 +78,8 @@ public class SearchEngineTest {
 
         ArrayList<Flight>  filteredDateList = searchEngine.filterFlightList(flightListAll,dateFromString, dateToString,false,false,false,0);
         for (Flight flight : filteredDateList){
-            assertTrue(dateFrom.compareTo(flight.getDate()) <= 0 && dateTo.compareTo(flight.getDate()) >= 0)
+            Date flightDate = format.parse(flight.getDate());
+            assertTrue(dateFrom.compareTo(flightDate) <= 0 && dateTo.compareTo(flightDate) >= 0);
         }
     }
 
