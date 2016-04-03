@@ -50,8 +50,8 @@ public class Flight {
 											   connectFlight[2], connectFlight[3]);
 		}
 		
-		this.passengerLuxuries = new PassengerLuxuries(passengerLuxBool[0], passengerLuxBool[1],
-													   passengerLuxInt[0], passengerLuxInt[1]);
+		this.setPassengerLuxuries(new PassengerLuxuries(passengerLuxBool[0], passengerLuxBool[1],
+													   passengerLuxInt[0], passengerLuxInt[1]));
 		
 	}
 	
@@ -171,6 +171,14 @@ public class Flight {
 
 	public void setBookedSagaSeats(int bookedSagaSeats) {
 		this.bookedSagaSeats = bookedSagaSeats;
+	}
+
+	public PassengerLuxuries getPassengerLuxuries() {
+		return passengerLuxuries;
+	}
+
+	public void setPassengerLuxuries(PassengerLuxuries passengerLuxuries) {
+		this.passengerLuxuries = passengerLuxuries;
 	}
 	
 }
