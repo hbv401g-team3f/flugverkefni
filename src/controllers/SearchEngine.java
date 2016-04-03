@@ -7,11 +7,10 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 import models.Flight;
-import helperFunctions.FlightComparatorAscending;
-import test.DatabaseRetrieverMock;
 
 
 /**
@@ -80,8 +79,14 @@ public class SearchEngine {
         }
 
         // Determine how to sort list of flights
-        if(priceDescending){
-
+        Collections.sort(filteredFlightList);
+        if(!priceDescending){
+            ArrayList<Flight> tmpList = new ArrayList<Flight>();
+            while(!filteredFlightList.isEmpty()){
+                Flight tmpFlight = filteredFlightList.remove(0);
+                tmpList.add(0,tmpFlight);
+            }
+            filteredFlightList = tmpList;
         }
 
         return filteredFlightList;

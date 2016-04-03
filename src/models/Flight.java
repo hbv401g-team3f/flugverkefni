@@ -1,6 +1,6 @@
 package models;
 
-public class Flight {
+public class Flight implements Comparable{
 
     // PRIVATE VARIABLES
     private String date;
@@ -51,6 +51,14 @@ public class Flight {
         this.setPassengerLuxuries(new PassengerLuxuries(passengerLuxBool[0], passengerLuxBool[1],
                 passengerLuxInt[0], passengerLuxInt[1]));
 
+    }
+
+    // COMPARE METHOD
+    @Override
+    public int compareTo(Flight flight1){
+        int comparePrice = ((Flight) flight1).getPrice();
+
+        return comparePrice - this.getPrice();
     }
 
     // PRIVATE METHODS
