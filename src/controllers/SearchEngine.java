@@ -14,10 +14,9 @@ import models.Flight;
 
 
 /**
- * @author stefa
- * The SearchEngine class is not ready yet - so it is
- * temporarily an interface so JUnit testing can be done
- * all unfinished methods and such will be commented out
+ * Class built for retrieval of inital ArrayList of Flight
+ * objects and subsequent filtering of said list. Searching
+ * generates a new list while filtering narrows the list down.
  */
 public class SearchEngine {
 
@@ -27,15 +26,43 @@ public class SearchEngine {
     private int passengerQty;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
+    /**
+     * Constructor for SearchEngine class
+     * @param DBConnection
+     */
+
     public SearchEngine(DatabaseRetriever DBConnection){
         this.DBConnection = DBConnection;
     }
+
+    /**
+     * Method to access database and retrieve relevant flights.
+     * @param travelDestination
+     * @param travelDate
+     * @param returnLocation
+     * @param returnDate
+     * @param passengerQty
+     * @return
+     */
 
     public ArrayList<Flight> searchFlightByCriteria(String travelDestination, String travelDate, String returnLocation, String returnDate, int passengerQty ){
         flightList = DBConnection.retrieveFlightsByCriteria(travelDestination, travelDate, returnLocation, returnDate, passengerQty);
         this.passengerQty = passengerQty;
         return flightList;
     }
+
+    /**
+     * Method for further narrowing of already created list of Flight objects. Allows further
+     * specifications to be made on what flights are included.
+     * @param flightListToFilter
+     * @param dateFrom
+     * @param dateTo
+     * @param wantSagaSeats
+     * @param wantWifi
+     * @param priceDescending
+     * @param maxPrice
+     * @return
+     */
 
     public ArrayList<Flight> filterFlightList(ArrayList<Flight> flightListToFilter, String dateFrom, String dateTo, boolean wantSagaSeats, boolean wantWifi, boolean priceDescending, int maxPrice){
 
