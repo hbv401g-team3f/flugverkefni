@@ -9,9 +9,8 @@ import models.Flight;
  * Created by - Flight Group - HBV401G
  * Spring 2016
  *
- * This is a mock class/object to serve the as a stand in for the
- * database, seeing that class is not ready.
- *
+ * This is a mock class/object to serve the as a stand in
+ * for the database, seeing that class is not ready.
  */
 public class DatabaseRetrieverMock implements DatabaseRetriever {
 
@@ -32,8 +31,8 @@ public class DatabaseRetrieverMock implements DatabaseRetriever {
      * @param passengerQty
      * @return flightList
      */
-    public ArrayList<Flight> retrieveFlightsByCriteria(String travelDate,
-                                                       String returnDate, String travelDestination, String returnLocation, int passengerQty) {
+    public ArrayList<Flight> retrieveFlightsByCriteria(String travelDate, String returnDate, String travelDestination, String returnLocation, int passengerQty) {
+
         connectArray = null;
         passBoolArray = new boolean[]{false, false};
         passIntArray = new int[]{3000, 400};

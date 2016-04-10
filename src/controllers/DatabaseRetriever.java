@@ -15,9 +15,9 @@ import javax.lang.model.type.ArrayType;
  * can serve as a guideline for the mock
  * database connection.
  */
-public interface DatabaseRetriever {
+public class DatabaseRetriever implements DatabaseConnection {
 
-    /*
+
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DATABASE_URL = "jdbc:mysql://localhost/thingy";
 
@@ -76,8 +76,6 @@ public interface DatabaseRetriever {
 		ArrayList<Flight> flightList = queryDatabase(queryString);
 		return flightList;
 	}
-	*/
-
 
     /**
      * Queries the database based on a given query
@@ -98,7 +96,8 @@ public interface DatabaseRetriever {
      * @return
      */
     public ArrayList<Flight> retrieveFlightsByCriteria(String departureDate, String returnDate,
-                                                       String departureLocation, String returnLocation, int passengerQty);
-
+                                                       String departureLocation, String returnLocation, int passengerQty){
+        //Todo
+    }
 
 }
