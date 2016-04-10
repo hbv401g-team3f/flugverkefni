@@ -76,28 +76,4 @@ public class DatabaseRetriever implements DatabaseConnection {
 		ArrayList<Flight> flightList = queryDatabase(queryString);
 		return flightList;
 	}
-
-    /**
-     * Queries the database based on a given query
-     * @param query
-     * @return
-     */
-    public ArrayList<Flight> queryDatabase(String query);
-
-
-    /**
-     * Searches for flights depending on given parameters, returns an ArrayList with
-     * the search results.
-     * @param departureDate
-     * @param returnDate
-     * @param departureLocation
-     * @param returnLocation
-     * @param passengerQty
-     * @return
-     */
-    public ArrayList<Flight> retrieveFlightsByCriteria(String departureDate, String returnDate,
-                                                       String departureLocation, String returnLocation, int passengerQty){
-        //Todo
-    }
-
 }

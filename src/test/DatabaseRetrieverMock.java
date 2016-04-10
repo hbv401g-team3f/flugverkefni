@@ -2,6 +2,7 @@ package test;
 
 import java.util.ArrayList;
 
+import controllers.DatabaseConnection;
 import controllers.DatabaseRetriever;
 import models.Flight;
 
@@ -12,7 +13,7 @@ import models.Flight;
  * This is a mock class/object to serve the as a stand in
  * for the database, seeing that class is not ready.
  */
-public class DatabaseRetrieverMock implements DatabaseRetriever {
+public class DatabaseRetrieverMock implements DatabaseConnection {
 
     private ArrayList<Flight> flightList = new ArrayList<Flight>();
     private String[] connectArray;
