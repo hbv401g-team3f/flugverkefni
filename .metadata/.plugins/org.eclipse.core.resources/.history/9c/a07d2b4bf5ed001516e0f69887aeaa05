@@ -1,0 +1,16 @@
+package models;
+
+public class PassengerLuxuries {
+	// PRIVATE VARIABLES
+	private boolean wifiAvailable;
+	private boolean mealsAvailable;
+	private int priceInFlightPoints;
+	private int flightPointsGained;
+	private boolean isWifiAvailable() {
+		return wifiAvailable;
+	}
+	private void setWifiAvailable(boolean wifiAvailable) {
+		this.wifiAvailable = wifiAvailable;
+	}
+	
+}
