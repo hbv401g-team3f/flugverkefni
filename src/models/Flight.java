@@ -13,10 +13,7 @@ package models;
 public class Flight implements Comparable<Flight>{
 
 
-    /**
-     * Instance variables for various flight properties.
-     */
-    private int price;
+    private double price;
     private String flightNumber;
     private String departureLoc;
     private String departureDate;
@@ -58,32 +55,32 @@ public class Flight implements Comparable<Flight>{
                   int numSeats, int bookedSeats, int numSagaSeats, int bookedSagaSeats,
                   String[] connectFlight, boolean[] passengerLuxBool, int[] passengerLuxInt) {
 
-        this.flightNumber = flightNumber;
-        this.price = price;
-        this.departureDate = departureDate;
-        this.departureTime = departureTime;
-        this.departureLoc = departureLoc;
-        this.depAirportId = depAirportId;
-        this.arrivalDate =  arrivalDate;
-        this.arrivalTime = arrivalTime;
-        this.arrivalLoc = arrivalLoc;
-        this.arrAirportId = arrAirportId;
+        this.setFlightNumber(flightNumber);
+        this.setPrice(price);
+        this.setDepartureDate(departureDate);
+        this.setDepartureTime(departureTime);
+        this.setDepartureLoc(departureLoc);
+        this.setDepAirportId(depAirportId);
+        this.setArrivalDate(arrivalDate);
+        this.setArrivalTime(arrivalTime);
+        this.setArrivalLoc(arrivalLoc);
+        this.setArrAirportId(arrAirportId);
 
-        this.numSeats = numSeats;
-        this.bookedSeats = bookedSeats;
-        this.numSagaSeats = numSagaSeats;
-        this.bookedSagaSeats = bookedSagaSeats;
+        this.setNumSeats(numSeats);
+        this.setBookedSeats(bookedSeats);
+        this.setNumSagaSeats(numSagaSeats);
+        this.setBookedSagaSeats(bookedSagaSeats);
 
 
 
 
         // Create an instance of PassengerLuxuries and ConnectFlight objects
         if(connectFlight == null){
-            this.connectFlight = null;
+            this.setConnectFlight(null);
         }
         else{
-            this.connectFlight = new ConnectFlight(connectFlight[0], connectFlight[1],
-                    connectFlight[2], connectFlight[3]);
+            this.setConnectFlight(new ConnectFlight(connectFlight[0], connectFlight[1],
+                    connectFlight[2], connectFlight[3]));
         }
 
         this.setPassengerLuxuries(new PassengerLuxuries(passengerLuxBool[0], passengerLuxBool[1],
@@ -98,9 +95,9 @@ public class Flight implements Comparable<Flight>{
      */
     @Override
     public int compareTo(Flight flight1){
-        int comparePrice = ((Flight) flight1).getPrice();
+        int comparePrice = (int)((Flight) flight1).getPrice();
 
-        return comparePrice - this.getPrice();
+        return comparePrice - (int) this.getPrice();
     }
 
     /**
@@ -108,17 +105,17 @@ public class Flight implements Comparable<Flight>{
      * @return
      */
     private boolean isConnectedFlight() {
-        return connectFlight == null;
+        return getConnectFlight() == null;
     }
 
-    /*
-        GET/SET  METHODS
+    /**
+     * Instance variables for various flight properties.
      */
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -136,6 +133,14 @@ public class Flight implements Comparable<Flight>{
 
     public void setDepartureLoc(String departureLoc) {
         this.departureLoc = departureLoc;
+    }
+
+    public String getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(String departureDate) {
+        this.departureDate = departureDate;
     }
 
     public String getDepartureTime() {
@@ -160,6 +165,14 @@ public class Flight implements Comparable<Flight>{
 
     public void setArrivalLoc(String arrivalLoc) {
         this.arrivalLoc = arrivalLoc;
+    }
+
+    public String getArrivalDate() {
+        return arrivalDate;
+    }
+
+    public void setArrivalDate(String arrivalDate) {
+        this.arrivalDate = arrivalDate;
     }
 
     public String getArrivalTime() {
@@ -210,22 +223,24 @@ public class Flight implements Comparable<Flight>{
         this.bookedSagaSeats = bookedSagaSeats;
     }
 
+    public ConnectFlight getConnectFlight() {
+        return connectFlight;
+    }
+
+    public void setConnectFlight(ConnectFlight connectFlight) {
+        this.connectFlight = connectFlight;
+    }
+
     public PassengerLuxuries getPassengerLuxuries() {
         return passengerLuxuries;
     }
 
-    public void setPassengerLuxuries(PassengerLuxuries passengerLuxuries) { this.passengerLuxuries = passengerLuxuries; }
-
-
-    public String getDate() {
-        return date;
+    public void setPassengerLuxuries(PassengerLuxuries passengerLuxuries) {
+        this.passengerLuxuries = passengerLuxuries;
     }
 
-    public String getDepartureDate() {
-        return departureDate;
-    }
+    /*
+        GET/SET  METHODS
+     */
 
-    public String getArrivalDate() {
-        return arrivalDate;
-    }
 }

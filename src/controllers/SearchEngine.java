@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
+import jdk.jfr.events.ExceptionThrownEvent;
 import models.Flight;
 
 
@@ -36,16 +37,19 @@ public class SearchEngine {
     }
 
     /**
-     * Method to access database and retrieve relevant flights.
-     * @param travelDestination
-     * @param travelDate
-     * @param returnLocation
-     * @param returnDate
+     *  Search for flights given some criterias
+     * @param departureDate
+     * @param departureLocation
+     * @param arrivalLocation
      * @param passengerQty
      * @return
      */
-    public ArrayList<Flight> searchFlightByCriteria(String travelDestination, String travelDate, String returnLocation, String returnDate, int passengerQty ){
-        flightList = DBConnection.retrieveFlightsByCriteria(travelDestination, travelDate, returnLocation, returnDate, passengerQty);
+    public ArrayList<Flight> searchFlightByCriteria(String departureDate, String departureLocation, String arrivalLocation, int passengerQty){
+        try{
+            flightList = DBConnection.retrieveFlightsByCriteria(departureDate, departureLocation, arrivalLocation, passengerQty);
+        } catch (Exception e){
+            System.err.println("Message: "+e.getMessage());
+        }
         this.passengerQty = passengerQty;
         return flightList;
     }
@@ -76,7 +80,7 @@ public class SearchEngine {
             try {
                 dateFromWanted = dateFormat.parse(dateFrom);
                 dateToWanted = dateFormat.parse(dateTo);
-                flightDate = dateFormat.parse(flight.getDate());
+                flightDate = dateFormat.parse(flight.getDepartureDate());
             } catch(ParseException e) {
                 System.err.println("String to Date parsing error:" + e.getMessage());
             }

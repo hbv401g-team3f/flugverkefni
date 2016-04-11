@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `database_retriever` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `database_retriever`;
 -- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
 -- Host: localhost    Database: database_retriever
@@ -18,31 +16,33 @@ USE `database_retriever`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `connectflight`
+-- Table structure for table `passenger_luxuries`
 --
 
-DROP TABLE IF EXISTS `connectflight`;
+DROP TABLE IF EXISTS `passenger_luxuries`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `connectflight` (
-  `flightNumber` int(11) NOT NULL,
-  `flightDate` date NOT NULL,
-  `connLoc` varchar(45) NOT NULL,
-  `connArrivalDate` date NOT NULL,
-  `connAirportId` varchar(3) NOT NULL,
-  `connDepartTime` date NOT NULL,
-  `connectflightcol` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`flightNumber`,`flightDate`)
+CREATE TABLE `passenger_luxuries` (
+  `flightNumber` varchar(45) NOT NULL,
+  `departureDate` date NOT NULL,
+  `wifiAvailable` tinyint(4) DEFAULT NULL,
+  `mealsAvailable` tinyint(4) DEFAULT NULL,
+  `priceInFlightPoints` int(11) DEFAULT NULL,
+  `flightPointsGained` int(11) DEFAULT NULL,
+  PRIMARY KEY (`flightNumber`,`departureDate`),
+  KEY `departureDate_idx` (`departureDate`),
+  CONSTRAINT `foreignKeyOne` FOREIGN KEY (`flightNumber`, `departureDate`) REFERENCES `flight` (`flightNumber`, `departureDate`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `connectflight`
+-- Dumping data for table `passenger_luxuries`
 --
 
-LOCK TABLES `connectflight` WRITE;
-/*!40000 ALTER TABLE `connectflight` DISABLE KEYS */;
-/*!40000 ALTER TABLE `connectflight` ENABLE KEYS */;
+LOCK TABLES `passenger_luxuries` WRITE;
+/*!40000 ALTER TABLE `passenger_luxuries` DISABLE KEYS */;
+INSERT INTO `passenger_luxuries` VALUES ('FI300','2016-04-20',1,1,5000,10),('KEK200','2016-04-20',1,1,6000,15);
+/*!40000 ALTER TABLE `passenger_luxuries` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-10 16:29:37
+-- Dump completed on 2016-04-11 22:50:49

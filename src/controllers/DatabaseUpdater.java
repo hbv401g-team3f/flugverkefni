@@ -2,7 +2,7 @@ package controllers;
 
 import models.Flight;
 
-public class DatabaseUpdater implements DatabaseConnection{
+public class DatabaseUpdater {
 
     public void updateFlight(Flight flightToBook, int bookedSeatQty) {
         //Todo
@@ -10,6 +10,7 @@ public class DatabaseUpdater implements DatabaseConnection{
 
     private String updateFlight(String query){
         //Todo
+        return "";
     }
 
 }

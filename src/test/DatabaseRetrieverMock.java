@@ -1,9 +1,7 @@
-package test;
+/*package test;
 
 import java.util.ArrayList;
 
-import controllers.DatabaseConnection;
-import controllers.DatabaseRetriever;
 import models.Flight;
 
 /**
@@ -13,7 +11,10 @@ import models.Flight;
  * This is a mock class/object to serve the as a stand in
  * for the database, seeing that class is not ready.
  */
-public class DatabaseRetrieverMock implements DatabaseConnection {
+
+
+/*
+public class DatabaseRetrieverMock {
 
     private ArrayList<Flight> flightList = new ArrayList<Flight>();
     private String[] connectArray;
@@ -32,6 +33,8 @@ public class DatabaseRetrieverMock implements DatabaseConnection {
      * @param passengerQty
      * @return flightList
      */
+
+  /*
     public ArrayList<Flight> retrieveFlightsByCriteria(String travelDate, String returnDate, String travelDestination, String returnLocation, int passengerQty) {
 
         connectArray = null;
@@ -65,7 +68,11 @@ public class DatabaseRetrieverMock implements DatabaseConnection {
      * @param query
      * @return
      */
+
+/*
     public ArrayList<Flight> queryDatabase(String query) {
         return null;
     }
 }
+
+*/

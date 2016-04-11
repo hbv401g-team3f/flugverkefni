@@ -4,6 +4,7 @@ package controllers;
 import java.sql.*;
 import java.util.ArrayList;
 
+import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
 import models.Flight;
 
 
@@ -15,20 +16,24 @@ import models.Flight;
  * can serve as a guideline for the mock
  * database connection.
  */
-public class DatabaseRetriever implements DatabaseConnection {
+public class DatabaseRetriever {
 
 
-    //static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DATABASE_URL = "jdbc:mysql://localhost/thingy";
+    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    static final String DATABASE_URL = "jdbc:mysql://localhost/database_retriever";
 
-    static final String USER = "username";
-    static final String PASS = "password";
+    static final String USER = "root";
+    static final String PASS = "";
 
 
-    DatabaseRetriever() {
+    public DatabaseRetriever() {
     }
 
+
+
     public ArrayList<Flight> retrieveFlightsByCriteria(String departureDate, String departureLocation, String arrivalLocation, int passengerQty) throws SQLException {
+
+
         ArrayList<Flight> flightList = new ArrayList<>();
 
         String queryString = "SELECT * FROM flight f LEFT JOIN connect_flight c ON c.departureDate = f.departureDate " +
@@ -40,7 +45,8 @@ public class DatabaseRetriever implements DatabaseConnection {
             //Class.forName(JDBC_DRIVER);
 
             System.out.println("Establishing a connection to the DB)");
-            Connection conn = DriverManager.getConnection(DATABASE_URL, USER, PASS);
+            //Connection conn = DriverManager.getConnection(DATABASE_URL, USER, PASS);
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306","root","");
 
             System.out.println("Creating statement...");
             PreparedStatement statement = conn.prepareStatement(queryString);
@@ -108,7 +114,7 @@ public class DatabaseRetriever implements DatabaseConnection {
             flightList = flightResults;
 
         } catch (SQLException e) {
-            System.out.println("Error message: " + e.getErrorCode());
+            System.out.println("Error message: " + e.getMessage());
         }
 
         return flightList;

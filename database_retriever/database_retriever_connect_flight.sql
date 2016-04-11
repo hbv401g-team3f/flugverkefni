@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `database_retriever` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `database_retriever`;
 -- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
 -- Host: localhost    Database: database_retriever
@@ -18,31 +16,32 @@ USE `database_retriever`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `passengerluxuries`
+-- Table structure for table `connect_flight`
 --
 
-DROP TABLE IF EXISTS `passengerluxuries`;
+DROP TABLE IF EXISTS `connect_flight`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `passengerluxuries` (
+CREATE TABLE `connect_flight` (
   `flightNumber` varchar(45) NOT NULL,
-  `depDate` date NOT NULL,
-  `wifiAvailable` tinyint(1) DEFAULT '0',
-  `mealsAvailable` tinyint(1) DEFAULT '0',
-  `priceInFlightPoints` int(11) DEFAULT NULL,
-  `flightPointGained` int(11) DEFAULT '0',
-  PRIMARY KEY (`flightNumber`,`depDate`),
-  CONSTRAINT `flightNumber` FOREIGN KEY (`flightNumber`) REFERENCES `flight` (`flight_number`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `departureDate` date NOT NULL,
+  `connLoc` varchar(45) DEFAULT NULL,
+  `connArrivalTime` time DEFAULT NULL,
+  `connAirportId` varchar(3) DEFAULT NULL,
+  `connDepartTime` time DEFAULT NULL,
+  PRIMARY KEY (`flightNumber`,`departureDate`),
+  CONSTRAINT `foreignKeyTwo` FOREIGN KEY (`flightNumber`, `departureDate`) REFERENCES `flight` (`flightNumber`, `departureDate`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `passengerluxuries`
+-- Dumping data for table `connect_flight`
 --
 
-LOCK TABLES `passengerluxuries` WRITE;
-/*!40000 ALTER TABLE `passengerluxuries` DISABLE KEYS */;
-/*!40000 ALTER TABLE `passengerluxuries` ENABLE KEYS */;
+LOCK TABLES `connect_flight` WRITE;
+/*!40000 ALTER TABLE `connect_flight` DISABLE KEYS */;
+INSERT INTO `connect_flight` VALUES ('FI300','2016-04-20','Gothenburg','17:15:00','GOT','17:45:00');
+/*!40000 ALTER TABLE `connect_flight` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-10 16:29:37
+-- Dump completed on 2016-04-11 22:50:49
