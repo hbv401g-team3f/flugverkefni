@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import models.Flight;
 
-import javax.lang.model.type.ArrayType;
+
 
 
 /**
@@ -18,61 +18,99 @@ import javax.lang.model.type.ArrayType;
 public class DatabaseRetriever implements DatabaseConnection {
 
 
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    //static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DATABASE_URL = "jdbc:mysql://localhost/thingy";
 
     static final String USER = "username";
     static final String PASS = "password";
 
 
-    DatabaseRetriever(){
+    DatabaseRetriever() {
     }
 
+    public ArrayList<Flight> retrieveFlightsByCriteria(String departureDate, String departureLocation, String arrivalLocation, int passengerQty) throws SQLException {
+        ArrayList<Flight> flightList = new ArrayList<>();
 
-    private ArrayList<Flight> queryDatabase(String query){
-        Connection conn = null;
-        Statement statement = nuill;
+        String queryString = "SELECT * FROM flight f LEFT JOIN connect_flight c ON c.departureDate = f.departureDate " +
+                "AND c.flightNumber = f.flightNumber LEFT JOIN passenger_luxuries p ON p.departureDate = f.departureDate " +
+                "AND p.flightNumber = f.flightNumber WHERE f.departureDate = ? " +
+                "AND f.departureLoc = ? AND f.arrivalLoc = ? AND ((f.numSeats+f.numSagaSeats)-(f.bookedSeats+f.bookedSagaSeats-?))>0";
 
-        try{
-            Class.forName(JDBC_DRIVER);
+        try {
+            //Class.forName(JDBC_DRIVER);
 
             System.out.println("Establishing a connection to the DB)");
-            conn = DriverManager.getConnection(DATABASE_URL,USER,PASS);
+            Connection conn = DriverManager.getConnection(DATABASE_URL, USER, PASS);
 
             System.out.println("Creating statement...");
-            statement = conn.createStatement();
-            ResultSet results = statement.executeQuery(query);
-            ArrayList<Flight> flightResults = new ArrayList<Flight>();
+            PreparedStatement statement = conn.prepareStatement(queryString);
+            statement.setString(1, departureDate);
+            statement.setString(2, departureLocation);
+            statement.setString(3, arrivalLocation);
+            statement.setInt(4, passengerQty);
+            ResultSet results = statement.executeQuery();
+            ArrayList<Flight> flightResults = new ArrayList<>();
 
-            while(results.next()){
+            while (results.next()) {
+                /*
+                * Initialize value arrays for connectFlight objects and passengerLuxuries objects
+                * */
+
+
+
+                /*
+                * Extract data from resultSet
+                 */
                 String flightNumber = results.getString("flightNumber");
                 int price = results.getInt("price");
-                String departureDate = results.getString("departureDate");
-                String departureLoc = results.getString("departureLoc");
+
+
+                String depDate = results.getString("departureDate");
                 String departureTime = results.getString("departureTime");
-                String arrivalLoc = results.getString("arrivalLoc");
+                String departureLoc = results.getString("departureLoc");
+                String depAirportId = results.getString("depAirportId");
+
                 String arrivalDate = results.getString("arrivalDate");
-                String arrivalTime = results.getString("arrivalDate");
+                String arrivalTime = results.getString("arrivalTime");
+                String arrivalLoc = results.getString("arrivalLoc");
+                String arrAirportId = results.getString("arrAirportId");
+
                 int numSeats = results.getInt("numSeats");
                 int bookedSeats = results.getInt("bookedSeats");
                 int numSagaSeats = results.getInt("numSagaSeats");
                 int bookedSagaSeats = results.getInt("bookedSagaSeats");
 
-                flightResults.add(new Flight());
+                String connLoc = results.getString("connLoc");
+                String connArrivalTime = results.getString("connArrivalTime");
+                String connAirportId = results.getString("connAirportId");
+                String connDepartTime = results.getString("connDepartTime");
+
+                String[] connectFlight = new String[]{connLoc, connArrivalTime, connAirportId, connDepartTime};
+
+
+                boolean wifiAvailable = results.getBoolean("wifiAvailable");
+                boolean mealsAvailable = results.getBoolean("mealsAvailable");
+
+                boolean[] passengerLuxBool = new boolean[]{wifiAvailable, mealsAvailable};
+
+
+                int priceInFlightPoints = results.getInt("priceInFlightPoints");
+                int flightPointsGained = results.getInt("flightPointsGained");
+
+                int[] passengerLuxInt = new int[]{priceInFlightPoints, flightPointsGained};
+
+
+                flightResults.add(new Flight(depDate, price, flightNumber, departureLoc, departureTime,
+                        depAirportId, arrivalLoc, arrivalDate, arrivalTime, arrAirportId, numSeats, bookedSeats,
+                        numSagaSeats, bookedSagaSeats, connectFlight, passengerLuxBool, passengerLuxInt));
             }
+
+            flightList = flightResults;
+
+        } catch (SQLException e) {
+            System.out.println("Error message: " + e.getErrorCode());
         }
 
-
-        return results;
+        return flightList;
     }
-
-    public ArrayList<Flight> retrieveFlightsByCriteria(String departureDate, String returnDate, String departureLocation, String returnLocation, int passengerQty)
-	{
-
-		String queryString = "SELECT * FROM flight, connectflight, passengerluxuries WHERE "
-
-
-		ArrayList<Flight> flightList = queryDatabase(queryString);
-		return flightList;
-	}
 }

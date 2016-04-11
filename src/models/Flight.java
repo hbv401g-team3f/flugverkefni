@@ -16,13 +16,14 @@ public class Flight implements Comparable<Flight>{
     /**
      * Instance variables for various flight properties.
      */
-    private String date;
     private int price;
     private String flightNumber;
     private String departureLoc;
+    private String departureDate;
     private String departureTime;
     private String depAirportId;
     private String arrivalLoc;
+    private String arrivalDate;
     private String arrivalTime;
     private String arrAirportId;
     private int numSeats;
@@ -34,13 +35,14 @@ public class Flight implements Comparable<Flight>{
 
     /**
      * The flight constructor with all of it's properties
-     * @param date
+     * @param departureDate
      * @param price
      * @param flightNumber
      * @param departureLoc
      * @param departureTime
      * @param depAirportId
      * @param arrivalLoc
+     * @param arrivalDate
      * @param arrivalTime
      * @param arrAirportId
      * @param numSeats
@@ -51,24 +53,29 @@ public class Flight implements Comparable<Flight>{
      * @param passengerLuxBool
      * @param passengerLuxInt
      */
-    public Flight(String date, int price, String flightNumber, String departureLoc, String departureTime,
-                  String depAirportId, String arrivalLoc, String arrivalTime, String arrAirportId,
+    public Flight(String departureDate, double price, String flightNumber, String departureLoc, String departureTime,
+                  String depAirportId, String arrivalLoc, String arrivalDate, String arrivalTime, String arrAirportId,
                   int numSeats, int bookedSeats, int numSagaSeats, int bookedSagaSeats,
                   String[] connectFlight, boolean[] passengerLuxBool, int[] passengerLuxInt) {
 
-        this.date = date;
-        this.price = price;
         this.flightNumber = flightNumber;
-        this.departureLoc = departureLoc;
+        this.price = price;
+        this.departureDate = departureDate;
         this.departureTime = departureTime;
+        this.departureLoc = departureLoc;
         this.depAirportId = depAirportId;
-        this.arrivalLoc = arrivalLoc;
+        this.arrivalDate =  arrivalDate;
         this.arrivalTime = arrivalTime;
+        this.arrivalLoc = arrivalLoc;
         this.arrAirportId = arrAirportId;
+
         this.numSeats = numSeats;
         this.bookedSeats = bookedSeats;
         this.numSagaSeats = numSagaSeats;
         this.bookedSagaSeats = bookedSagaSeats;
+
+
+
 
         // Create an instance of PassengerLuxuries and ConnectFlight objects
         if(connectFlight == null){
@@ -212,5 +219,13 @@ public class Flight implements Comparable<Flight>{
 
     public String getDate() {
         return date;
+    }
+
+    public String getDepartureDate() {
+        return departureDate;
+    }
+
+    public String getArrivalDate() {
+        return arrivalDate;
     }
 }
