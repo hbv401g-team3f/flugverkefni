@@ -44,7 +44,6 @@ public class SearchEngine {
      * @param passengerQty
      * @return
      */
-
     public ArrayList<Flight> searchFlightByCriteria(String travelDestination, String travelDate, String returnLocation, String returnDate, int passengerQty ){
         flightList = DBConnection.retrieveFlightsByCriteria(travelDestination, travelDate, returnLocation, returnDate, passengerQty);
         this.passengerQty = passengerQty;
@@ -67,7 +66,6 @@ public class SearchEngine {
     public ArrayList<Flight> filterFlightList(ArrayList<Flight> flightListToFilter, String dateFrom, String dateTo, boolean wantSagaSeats, boolean wantWifi, boolean priceDescending, int maxPrice){
 
         filteredFlightList = new ArrayList<Flight>();
-
         for(Flight flight : flightListToFilter){
             // Determines if the flight is within specified parameters
             boolean flightEligible = true;
@@ -82,10 +80,12 @@ public class SearchEngine {
             } catch(ParseException e) {
                 System.err.println("String to Date parsing error:" + e.getMessage());
             }
+
             // Dates of flight available
             if(dateFromWanted.compareTo(flightDate) >= 0 && dateToWanted.compareTo(flightDate) <= 0){
                 flightEligible = false;
             }
+
             // Reject flight if client wants Saga class seats but none are available
             int availableSagaSeats = flight.getNumSagaSeats() - flight.getBookedSagaSeats();
             if(wantSagaSeats && availableSagaSeats < passengerQty ){

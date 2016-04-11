@@ -69,8 +69,7 @@ public class DatabaseRetriever implements DatabaseConnection {
     public ArrayList<Flight> retrieveFlightsByCriteria(String departureDate, String returnDate, String departureLocation, String returnLocation, int passengerQty)
 	{
 
-		//Egill - her att thu ad bua til adferd sem byr til fyrirspurnina!
-		String queryString = "Egill her a ad koma fyrirspurn!";
+		String queryString = "SELECT * FROM flight, connectflight, passengerluxuries WHERE "
 
 
 		ArrayList<Flight> flightList = queryDatabase(queryString);
