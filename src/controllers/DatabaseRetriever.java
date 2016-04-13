@@ -110,10 +110,14 @@ public class DatabaseRetriever {
 
                 int[] passengerLuxInt = new int[]{priceInFlightPoints, flightPointsGained};
 
-
-                flightResults.add(new Flight(depDate, price, flightNumber, departureLoc, departureTime,
+                Flight tmpFlight = new Flight(depDate, price, flightNumber, departureLoc, departureTime,
                         depAirportId, arrivalLoc, arrivalDate, arrivalTime, arrAirportId, numSeats, bookedSeats,
-                        numSagaSeats, bookedSagaSeats, connectFlight, passengerLuxBool, passengerLuxInt));
+                        numSagaSeats, bookedSagaSeats, connectFlight, passengerLuxBool, passengerLuxInt);
+
+                flightResults.add(tmpFlight);
+
+                System.out.println("Flight object added.");
+                System.out.println("Flight number added: " + tmpFlight.getFlightNumber());
             }
 
             flightList = flightResults;

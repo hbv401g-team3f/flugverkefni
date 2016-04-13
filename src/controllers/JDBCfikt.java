@@ -16,11 +16,14 @@ public class JDBCfikt {
         ArrayList<Flight> flightList = new ArrayList<>();
 
         try {
-            DBC.retrieveFlightsByCriteria("2016-04-20", "Iceland", "Casablanca", 1);
+            System.out.println("Retrieving results");
+            flightList = DBC.retrieveFlightsByCriteria("2016-04-20", "Iceland", "Casablanca", 1);
         } catch (Exception e)
         {
             System.err.println("Shiiii "+ e.getMessage());
         }
+
+        System.out.println("Displaying results:");
 
         for(Flight currentFlight : flightList){
             System.out.println("Flight number: "+currentFlight.getFlightNumber()+", Price: " +currentFlight.getPrice()+", Wifi Availablle? "+ currentFlight.getPassengerLuxuries().isWifiAvailable());
