@@ -23,7 +23,7 @@ public class DatabaseRetriever {
     static final String DATABASE_URL = "jdbc:mysql://localhost/database_retriever";
 
     static final String USER = "root";
-    static final String PASS = "";
+    static final String PASS = "Rassapi7904";
 
 
     public DatabaseRetriever() {
@@ -42,11 +42,16 @@ public class DatabaseRetriever {
                 "AND f.departureLoc = ? AND f.arrivalLoc = ? AND ((f.numSeats+f.numSagaSeats)-(f.bookedSeats+f.bookedSagaSeats-?))>0";
 
         try {
-            //Class.forName(JDBC_DRIVER);
+
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            }catch (ClassNotFoundException e){
+                System.out.println(e.getMessage());
+            }
 
             System.out.println("Establishing a connection to the DB)");
             //Connection conn = DriverManager.getConnection(DATABASE_URL, USER, PASS);
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306","root","");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/database_retriever","root","Rassapi7904");
 
             System.out.println("Creating statement...");
             PreparedStatement statement = conn.prepareStatement(queryString);
