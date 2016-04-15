@@ -27,11 +27,6 @@ public class SearchEngine {
     private int passengerQty;
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
-    /**
-     * Constructor for SearchEngine class
-     * @param DBConnection
-     */
-
     public SearchEngine(){
         DBConnection = new DatabaseRetriever();
     }

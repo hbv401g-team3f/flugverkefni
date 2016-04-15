@@ -4,13 +4,7 @@ import models.Flight;
 
 public class DatabaseUpdater {
 
-    public void updateFlight(Flight flightToBook, int bookedSeatQty) {
+    public void updateFlight(Flight flightToBook, int bookedSeatQty, boolean isSagaClass) {
         //Todo
     }
-
-    private String updateFlight(String query){
-        //Todo
-        return "";
-    }
-
 }

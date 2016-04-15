@@ -23,7 +23,7 @@ public class DatabaseRetriever {
     static final String DATABASE_URL = "jdbc:mysql://localhost/database_retriever";
 
     static final String USER = "root";
-    static final String PASS = "Rassapi7904";
+    static final String PASS = "test";
 
 
     public DatabaseRetriever() {
@@ -44,14 +44,13 @@ public class DatabaseRetriever {
         try {
 
             try {
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName(JDBC_DRIVER);
             }catch (ClassNotFoundException e){
                 System.out.println(e.getMessage());
             }
 
             System.out.println("Establishing a connection to the DB)");
-            //Connection conn = DriverManager.getConnection(DATABASE_URL, USER, PASS);
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/database_retriever","root","Rassapi7904");
+            Connection conn = DriverManager.getConnection(DATABASE_URL, USER, PASS);
 
             System.out.println("Creating statement...");
             PreparedStatement statement = conn.prepareStatement(queryString);
@@ -63,12 +62,6 @@ public class DatabaseRetriever {
             ArrayList<Flight> flightResults = new ArrayList<>();
 
             while (results.next()) {
-                /*
-                * Initialize value arrays for connectFlight objects and passengerLuxuries objects
-                * */
-
-
-
                 /*
                 * Extract data from resultSet
                  */
@@ -115,9 +108,6 @@ public class DatabaseRetriever {
                         numSagaSeats, bookedSagaSeats, connectFlight, passengerLuxBool, passengerLuxInt);
 
                 flightResults.add(tmpFlight);
-
-                System.out.println("Flight object added.");
-                System.out.println("Flight number added: " + tmpFlight.getFlightNumber());
             }
 
             flightList = flightResults;

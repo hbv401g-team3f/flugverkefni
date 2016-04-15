@@ -37,7 +37,7 @@ public class SearchEngineTest {
 
     @Before
     public void setUp() throws Exception {
-        searchEngine = new SearchEngine(new DatabaseRetrieverMock());
+        searchEngine = new SearchEngine();
         format = new SimpleDateFormat("dd.MM.yyyy");
         flightListAll = searchEngine.searchFlightByCriteria("No Preference", "No Preference", "Keflavik", "No Preference", 1);
     }
