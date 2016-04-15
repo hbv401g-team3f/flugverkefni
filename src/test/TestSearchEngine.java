@@ -62,6 +62,19 @@ public class TestSearchEngine {
     }
 
     @Test
+    public void testAscendingPriceOrder() throws Exception{
+        ArrayList<Flight> filteredAscendingList = searchEngine.filterFlightList(flightListAll,"2016-01-01", "2016-12-30",false, false, false, 0);
+
+        // Negative value guaranteed to be lower than least expensive flight
+        double tmpPrice = 0;
+
+        for(Flight flight : filteredAscendingList){
+            assertTrue(flight.getPrice() >= tmpPrice);
+            tmpPrice = flight.getPrice();
+        }
+    }
+
+    @Test
     public void testSagaAvailability() throws Exception{
         ArrayList<Flight>  filteredSagaList = searchEngine.filterFlightList(flightListAll,"2016-01-01", "2016-12-30",true,false,false,0);
         for (Flight flight : filteredSagaList){
