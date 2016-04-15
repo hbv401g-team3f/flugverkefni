@@ -11,13 +11,12 @@ import java.util.ArrayList;
 public class JDBCfikt {
 
     public static void main(String[] args) {
-        DatabaseRetriever DBC = new DatabaseRetriever();
-
+        SearchEngine searchEngine = new SearchEngine();
         ArrayList<Flight> flightList = new ArrayList<>();
 
         try {
             System.out.println("Retrieving results");
-            flightList = DBC.retrieveFlightsByCriteria("2016-04-20", "Iceland", "Casablanca", 1);
+            flightList = searchEngine.searchFlightByCriteria("2016-04-20", "Iceland", "Casablanca", 1);
         } catch (Exception e)
         {
             System.err.println("Shiiii "+ e.getMessage());

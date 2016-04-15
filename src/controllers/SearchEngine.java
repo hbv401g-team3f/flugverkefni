@@ -32,8 +32,8 @@ public class SearchEngine {
      * @param DBConnection
      */
 
-    public SearchEngine(DatabaseRetriever DBConnection){
-        this.DBConnection = DBConnection;
+    public SearchEngine(){
+        DBConnection = new DatabaseRetriever();
     }
 
     /**
