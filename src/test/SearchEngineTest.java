@@ -1,6 +1,7 @@
 package test;
 
 import controllers.SearchEngine;
+import controllers.DatabaseRetriever;
 import models.Flight;
 import org.junit.After;
 import org.junit.Before;
@@ -33,20 +34,21 @@ public class SearchEngineTest {
     private SearchEngine searchEngine;
     private ArrayList<Flight> flightListAll;
     private SimpleDateFormat format;
+    private SimpleDateFormat timeFormat;
 
 
     @Before
     public void setUp() throws Exception {
-        searchEngine = new SearchEngine(new DatabaseRetrieverMock());
-        format = new SimpleDateFormat("dd.MM.yyyy");
-        flightListAll = searchEngine.searchFlightByCriteria("No Preference", "No Preference", "Keflavik", "No Preference", 1);
+        searchEngine = new SearchEngine();
+        format = new SimpleDateFormat("yyyy-mm-dd");
+        timeFormat = new SimpleDateFormat("HH:mm:ss");
+        flightListAll = searchEngine.searchFlightByCriteria("2016-04-20", "Iceland", "CasaBlanca", 4);
     }
 
     @After
     public void tearDown() throws Exception {
         flightListAll.clear();
     }
-
 
     @Test
     public void testFilterWifiFlights() throws Exception{
@@ -62,7 +64,7 @@ public class SearchEngineTest {
         ArrayList<Flight> filteredDescendingList = searchEngine.filterFlightList(flightListAll,"01.01.2016", "30.12.2016",false, false, true, 0);
 
         //Some large value here that is guaranteed to be larger than the most expensive flight
-        int oldPrice = 1000000000;
+        double oldPrice = 1000000000;
 
         for (Flight flight : filteredDescendingList){
             assertTrue(flight.getPrice() <= oldPrice);
@@ -88,7 +90,7 @@ public class SearchEngineTest {
 
         ArrayList<Flight>  filteredDateList = searchEngine.filterFlightList(flightListAll,dateFromString, dateToString,false,false,false,0);
         for (Flight flight : filteredDateList){
-            Date flightDate = format.parse(flight.getDate());
+            Date flightDate = format.parse(flight.getDepartureDate());
             assertTrue(dateFrom.compareTo(flightDate) <= 0 && dateTo.compareTo(flightDate) >= 0);
         }
     }
