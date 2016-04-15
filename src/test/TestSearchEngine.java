@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Created by egill on 4/15/2016.
+ * JUnit class for testing SearchEngine class and capabilites.
  */
 public class TestSearchEngine {
     /**
