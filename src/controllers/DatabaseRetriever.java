@@ -16,8 +16,8 @@ public class DatabaseRetriever {
 
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DATABASE_URL = "jdbc:mysql://localhost/flight_database?autoReconnect=true&useSSL=false";
-    private static final String USER = "root";
-    private static final String PASS = "Rassapi7904";
+    private static final String USER = "";
+    private static final String PASS = "";
 
 
     public DatabaseRetriever() {
