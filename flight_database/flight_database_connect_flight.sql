@@ -40,7 +40,7 @@ CREATE TABLE `connect_flight` (
 
 LOCK TABLES `connect_flight` WRITE;
 /*!40000 ALTER TABLE `connect_flight` DISABLE KEYS */;
-INSERT INTO `connect_flight` VALUES ('FI300','2016-04-20','Gothenburg','17:15:00','GOT','17:45:00');
+INSERT INTO `connect_flight` VALUES ('FI300','2016-04-20','Gothenburg','17:15:00','GOT','17:45:00'),('NY141','2016-04-22','Reykjavik','21:00:00','REK','21:15:00'),('NY147','2016-04-23','Isafjordur','19:00:00','IFJ','19:15:00'),('NY156','2016-04-22','Akureyri','17:00:00','AEY','17:15:00'),('NY178','2016-04-23','Isafjordur','17:00:00','IFJ','17:15:00'),('NY179','2016-04-23','Akureyri','21:00:00','AEY','21:15:00'),('NY187','2016-04-23','Akureyri','13:00:00','AEY','13:15:00'),('NY231','2016-04-23','Akureyri','21:00:00','AEY','21:15:00'),('NY242','2016-04-23','Akureyri','11:00:00','AEY','11:15:00'),('NY250','2016-04-23','Reykjavik','07:00:00','REK','07:15:00'),('NY279','2016-04-23','Akureyri','15:00:00','AEY','15:15:00'),('NY285','2016-04-23','Reykjavik','09:00:00','REK','09:15:00'),('NY291','2016-04-22','Akureyri','19:00:00','AEY','19:15:00');
 /*!40000 ALTER TABLE `connect_flight` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-16 17:08:37
+-- Dump completed on 2016-04-16 18:57:31
