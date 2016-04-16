@@ -1,12 +1,15 @@
 package models;
 
+/**
+ * Custom Object containing information regarding layover flights
+ */
 public class ConnectFlight {
 
     // PRIVATE VARIABLES
-    private String connLoc;
-    private String connArrivalTime;
-    private String connAirportId;
-    private String connDepartTime;
+    private String connLoc; // String containing name of location of connecting flights
+    private String connArrivalTime; // String with arrival at connective location on format "hh:mm:ss"
+    private String connAirportId; // String containing 3 character international identification tag of airport
+    private String connDepartTime; // String with departure time at connective location on format "hh:mm:ss"
 
     // CONSTRUCTOR
     public ConnectFlight(String connLoc, String connArrivalTime, String connAirportId,
@@ -44,5 +47,4 @@ public class ConnectFlight {
     public void setConnDepartTime(String connDepartTime) {
         this.connDepartTime = connDepartTime;
     }
-
 }

@@ -3,8 +3,6 @@ package controllers;
 
 import java.sql.*;
 import java.util.ArrayList;
-
-import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
 import models.Flight;
 
 /**
@@ -26,7 +24,7 @@ public class DatabaseRetriever {
 
     /**
      * Retrieves flights from MySQL database with given parameters.
-     * @param departureDate Date of departure on format "yyyy-mm-dd"
+     * @param departureDate Date of departure on format "yyyy-MM-dd"
      * @param departureLocation Name of location of departure
      * @param arrivalLocation Name of loacation of arrival
      * @param passengerQty Amount of bookable seats on flight
