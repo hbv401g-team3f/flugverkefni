@@ -1,10 +1,13 @@
 package test;
 
 import controllers.SearchEngine;
+import exceptions.InvalidTimeException;
 import models.Flight;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -90,7 +93,7 @@ public class TestSearchEngine {
     }
 
     @Test
-    public void testWithinDateFrame() throws Exception{
+    public void testWithinTimeFrame() throws Exception{
         String dateFromString = "00:01:00";
         String dateToString = "23:59:00";
         Date dateFrom = timeFormat.parse(dateFromString);
@@ -101,5 +104,24 @@ public class TestSearchEngine {
             Date flightDate = format.parse(flight.getDepartureDate());
             assertTrue(dateFrom.compareTo(flightDate) <= 0 && dateTo.compareTo(flightDate) >= 0);
         }
+    }
+
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
+
+    @Test
+    public void testDateException(){
+        exception.expect(InvalidTimeException.class);
+        exception.expectMessage("Error: Arrival date is before departure date.");
+        String[] connectArray = {"","","",""};
+        boolean[] luxArray = {true,true};
+        int[] luxInt = {1,2};
+        try {
+            Flight flight = new Flight("2016-04-03", 60000, "LFW698", "Munich", "15:30:00", "MUH", "Iceland", "2016-04-02",
+                    "14:30:00", "KEF", 50, 0, 15, 0, connectArray, luxArray, luxInt);
+        } catch (InvalidTimeException i){
+            System.out.println(i.getMessage());
+        }
+
     }
 }
