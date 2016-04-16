@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -31,7 +32,7 @@ public class TestSearchEngine {
         searchEngine = new SearchEngine();
         format = new SimpleDateFormat("yyyy-mm-dd");
         timeFormat = new SimpleDateFormat("HH:mm:ss");
-        flightListAll = searchEngine.searchFlightByCriteria("2016-04-20", "Iceland", "CasaBlanca", 4);
+        flightListAll = searchEngine.searchFlightByCriteria("2016-04-03", "Iceland", "London", 4);
     }
 
     @After
@@ -40,8 +41,13 @@ public class TestSearchEngine {
     }
 
     @Test
+    public void testSetup() throws Exception {
+        assertNotNull(flightListAll.get(0));
+    }
+
+    @Test
     public void testFilterWifiFlights() throws Exception{
-        ArrayList<Flight> filteredWifiList = searchEngine.filterFlightList(flightListAll,"2016-01-01", "2016-12-30",false,true,false,0);
+        ArrayList<Flight> filteredWifiList = searchEngine.filterFlightList(flightListAll,"00:01:00","23:59:00",false,true,false,0);
 
         for(Flight flight : filteredWifiList){
             assertEquals(true, flight.getPassengerLuxuries().isWifiAvailable());
@@ -50,7 +56,7 @@ public class TestSearchEngine {
 
     @Test
     public void testDescendingPriceOrder() throws Exception{
-        ArrayList<Flight> filteredDescendingList = searchEngine.filterFlightList(flightListAll,"2016-01-01", "2016-12-30",false, false, true, 0);
+        ArrayList<Flight> filteredDescendingList = searchEngine.filterFlightList(flightListAll,"00:01:00","23:59:00",false, false, true, 0);
 
         //Some large value here that is guaranteed to be larger than the most expensive flight
         double oldPrice = 1000000000;
@@ -63,7 +69,7 @@ public class TestSearchEngine {
 
     @Test
     public void testAscendingPriceOrder() throws Exception{
-        ArrayList<Flight> filteredAscendingList = searchEngine.filterFlightList(flightListAll,"2016-01-01", "2016-12-30",false, false, false, 0);
+        ArrayList<Flight> filteredAscendingList = searchEngine.filterFlightList(flightListAll,"00:01:00","23:59:00",false, false, false, 0);
 
         // Negative value guaranteed to be lower than least expensive flight
         double tmpPrice = 0;
@@ -76,7 +82,7 @@ public class TestSearchEngine {
 
     @Test
     public void testSagaAvailability() throws Exception{
-        ArrayList<Flight>  filteredSagaList = searchEngine.filterFlightList(flightListAll,"2016-01-01", "2016-12-30",true,false,false,0);
+        ArrayList<Flight>  filteredSagaList = searchEngine.filterFlightList(flightListAll,"00:01:00","23:59:00",true,false,false,0);
         for (Flight flight : filteredSagaList){
             int numAvailableSagaSeats = flight.getNumSagaSeats()-flight.getBookedSagaSeats();
             assertTrue(numAvailableSagaSeats > 0);
@@ -85,10 +91,10 @@ public class TestSearchEngine {
 
     @Test
     public void testWithinDateFrame() throws Exception{
-        String dateFromString = "2016-04-03";
-        String dateToString = "2016-04-04";
-        Date dateFrom = format.parse(dateFromString);
-        Date dateTo = format.parse(dateToString);
+        String dateFromString = "00:01:00";
+        String dateToString = "23:59:00";
+        Date dateFrom = timeFormat.parse(dateFromString);
+        Date dateTo = timeFormat.parse(dateToString);
 
         ArrayList<Flight>  filteredDateList = searchEngine.filterFlightList(flightListAll,dateFromString, dateToString,false,false,false,0);
         for (Flight flight : filteredDateList){

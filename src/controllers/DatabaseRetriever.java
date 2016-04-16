@@ -13,10 +13,10 @@ public class DatabaseRetriever {
 
 
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DATABASE_URL = "jdbc:mysql://localhost/database_retriever";
+    static final String DATABASE_URL = "jdbc:mysql://localhost/database_retriever?autoReconnect=true&useSSL=false";
 
     static final String USER = "root";
-    static final String PASS = "test";
+    static final String PASS = "Rassapi7904";
 
 
     public DatabaseRetriever() {
@@ -50,7 +50,6 @@ public class DatabaseRetriever {
                 System.out.println(e.getMessage());
             }
 
-            System.out.println("Establishing a connection to the DB)");
             Connection conn = DriverManager.getConnection(DATABASE_URL, USER, PASS);
 
             System.out.println("Creating statement...");
