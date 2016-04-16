@@ -19,11 +19,10 @@ import models.Flight;
 public class DatabaseRetriever {
 
 
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DATABASE_URL = "jdbc:mysql://localhost/database_retriever";
-
-    static final String USER = "root";
-    static final String PASS = "Rassapi7904";
+    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost/database_retriever";
+    private static final String USER = "";
+    private static final String PASS = "";
 
 
     public DatabaseRetriever() {
@@ -50,10 +49,10 @@ public class DatabaseRetriever {
             }
 
             System.out.println("Establishing a connection to the DB)");
-            //Connection conn = DriverManager.getConnection(DATABASE_URL, USER, PASS);
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/database_retriever","root","Rassapi7904");
+            Connection conn = DriverManager.getConnection(DATABASE_URL, USER, PASS);
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/database_retriever","root","Rassapi7904");
 
-            System.out.println("Creating statement...");
+            //System.out.println("Creating statement...");
             PreparedStatement statement = conn.prepareStatement(queryString);
             statement.setString(1, departureDate);
             statement.setString(2, departureLocation);
@@ -116,8 +115,8 @@ public class DatabaseRetriever {
 
                 flightResults.add(tmpFlight);
 
-                System.out.println("Flight object added.");
-                System.out.println("Flight number added: " + tmpFlight.getFlightNumber());
+              //  System.out.println("Flight object added.");
+              //  System.out.println("Flight number added: " + tmpFlight.getFlightNumber());
             }
 
             flightList = flightResults;
