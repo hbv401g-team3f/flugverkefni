@@ -1,3 +1,4 @@
+
 package controllers;
 
 
@@ -40,7 +41,7 @@ public class JDBCfikt {
     }
 
     public static void updateFlightTest(ArrayList<Flight> flightList){
-
+        /*
         if(flightList == null){
             System.out.println("Listinn er tómur");
         }
@@ -52,6 +53,7 @@ public class JDBCfikt {
             bookFlight.updateFlight(flightToBook, 5, false);
 
         }
+        */
 
     }
 

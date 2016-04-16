@@ -3,6 +3,8 @@ package controllers;
 
 import java.sql.*;
 import java.util.ArrayList;
+
+import exceptions.InvalidTimeException;
 import models.Flight;
 
 /**
@@ -14,8 +16,8 @@ public class DatabaseRetriever {
 
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DATABASE_URL = "jdbc:mysql://localhost/database_retriever?autoReconnect=true&useSSL=false";
-    private static final String USER = "";
-    private static final String PASS = "";
+    private static final String USER = "root";
+    private static final String PASS = "Rassapi7904";
 
 
     public DatabaseRetriever() {
@@ -51,7 +53,6 @@ public class DatabaseRetriever {
 
             Connection conn = DriverManager.getConnection(DATABASE_URL, USER, PASS);
 
-            System.out.println("Creating statement...");
             PreparedStatement statement = conn.prepareStatement(queryString);
             statement.setString(1, departureDate);
             statement.setString(2, departureLocation);
@@ -102,9 +103,15 @@ public class DatabaseRetriever {
 
                 int[] passengerLuxInt = new int[]{priceInFlightPoints, flightPointsGained};
 
-                Flight tmpFlight = new Flight(depDate, price, flightNumber, departureLoc, departureTime,
-                        depAirportId, arrivalLoc, arrivalDate, arrivalTime, arrAirportId, numSeats, bookedSeats,
-                        numSagaSeats, bookedSagaSeats, connectFlight, passengerLuxBool, passengerLuxInt);
+                Flight tmpFlight = null;
+
+                try {
+                    tmpFlight = new Flight(depDate, price, flightNumber, departureLoc, departureTime,
+                            depAirportId, arrivalLoc, arrivalDate, arrivalTime, arrAirportId, numSeats, bookedSeats,
+                            numSagaSeats, bookedSagaSeats, connectFlight, passengerLuxBool, passengerLuxInt);
+                } catch(InvalidTimeException i){
+                    System.out.println(i.getMessage());
+                }
 
                 flightResults.add(tmpFlight);
             }

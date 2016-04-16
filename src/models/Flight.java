@@ -1,5 +1,11 @@
 package models;
 
+import exceptions.InvalidTimeException;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by - Flight Group - HBV401G
  * Spring 2016
@@ -58,7 +64,7 @@ public class Flight implements Comparable<Flight>{
     public Flight(String departureDate, double price, String flightNumber, String departureLoc, String departureTime,
                   String depAirportId, String arrivalLoc, String arrivalDate, String arrivalTime, String arrAirportId,
                   int numSeats, int bookedSeats, int numSagaSeats, int bookedSagaSeats,
-                  String[] connectFlight, boolean[] passengerLuxBool, int[] passengerLuxInt) {
+                  String[] connectFlight, boolean[] passengerLuxBool, int[] passengerLuxInt) throws InvalidTimeException {
 
         this.setFlightNumber(flightNumber);
         this.setPrice(price);
@@ -91,16 +97,33 @@ public class Flight implements Comparable<Flight>{
         this.setPassengerLuxuries(new PassengerLuxuries(passengerLuxBool[0], passengerLuxBool[1],
                 passengerLuxInt[0], passengerLuxInt[1]));
 
+        // Test to see if time and date of departure and arrival are valid
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-ddHH:mm:ss");
+        Date dateStart = new Date();
+        Date dateEnd = new Date();
+
+        try {
+            dateStart = dateFormat.parse(departureDate + departureTime);
+            dateEnd = dateFormat.parse(arrivalDate + arrivalTime);
+        } catch (ParseException parseException){
+            System.out.println(parseException.getMessage());
+        }
+        if(dateStart.after(dateEnd)){
+            throw new InvalidTimeException("Error: Arrival date is before departure date.");
+        }
+
+
     }
 
     /**
      * This function compares prices between two different flight objects
-     * @param flight1
-     * @return
+     * @param flight1 Flight with price to be compared to
+     * @return returns negative if flight1 is cheaper, 0 if price
+     * is the same and positive number if it is more expensive
      */
     @Override
     public int compareTo(Flight flight1){
-        int comparePrice = (int)((Flight) flight1).getPrice();
+        int comparePrice = (int)flight1.getPrice();
 
         return comparePrice - (int) this.getPrice();
     }
