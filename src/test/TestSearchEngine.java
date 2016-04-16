@@ -35,7 +35,7 @@ public class TestSearchEngine {
         searchEngine = new SearchEngine();
         format = new SimpleDateFormat("yyyy-mm-dd");
         timeFormat = new SimpleDateFormat("HH:mm:ss");
-        flightListAll = searchEngine.searchFlightByCriteria("2016-04-03", "Iceland", "London", 4);
+        flightListAll = searchEngine.searchFlightByCriteria("2016-04-20", "Reykjavik", "Akureyri", 1);
     }
 
     @After
@@ -106,13 +106,8 @@ public class TestSearchEngine {
         }
     }
 
-    @Rule
-    public ExpectedException exception = ExpectedException.none();
-
     @Test
     public void testDateException(){
-        exception.expect(InvalidTimeException.class);
-        exception.expectMessage("Error: Arrival date is before departure date.");
         String[] connectArray = {"","","",""};
         boolean[] luxArray = {true,true};
         int[] luxInt = {1,2};
@@ -121,6 +116,7 @@ public class TestSearchEngine {
                     "14:30:00", "KEF", 50, 0, 15, 0, connectArray, luxArray, luxInt);
         } catch (InvalidTimeException i){
             System.out.println(i.getMessage());
+            assertEquals(i.getMessage(),"Error: Arrival date is before departure date.");
         }
 
     }
