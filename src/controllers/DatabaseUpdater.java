@@ -5,13 +5,22 @@ import models.Flight;
 
 import java.sql.*;
 
+/**
+ * Connects to MySQL database and updates relevant info for flights
+ */
 public class DatabaseUpdater {
+
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DATABASE_URL = "jdbc:mysql://localhost/flight_database?autoReconnect=true&useSSL=false";
     private static final String USER = "";
     private static final String PASS = "";
 
-
+    /**
+     * Function to update data for specific flight
+     * @param flightToBook Flight object with data to be changed
+     * @param bookedSeatQty Integer number of seats to be booked in economy class
+     * @param bookSagaSeats Integer number of seats to be booked in business class
+     */
     public void updateFlight(Flight flightToBook, int bookedSeatQty, boolean bookSagaSeats) {
 
         String query = "update flight set bookedSeats = bookedSeats + ? WHERE flightNumber = ? AND departureDate = ?";
