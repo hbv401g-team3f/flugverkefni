@@ -1,5 +1,6 @@
 package controllers;
-        import models.Flight;
+
+import models.Flight;
 
 public class BookingManager {
     // PRIVATE VARIABLES
