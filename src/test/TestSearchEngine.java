@@ -1,7 +1,6 @@
 package test;
 
 import controllers.SearchEngine;
-import controllers.DatabaseRetriever;
 import models.Flight;
 import org.junit.After;
 import org.junit.Before;
@@ -11,23 +10,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
- * Created by - Flight Group - HBV401G
- * Spring 2016
- *
- * This is a test class for the SearchEngine class
- * seeing that the DataBase retriever class isn't
- * ready yet, we use a MockConnection, seeing that
- * there is no database connection the most important
- * function to test is the filter function within
- * the Search Engine class.
+ * JUnit class for testing SearchEngine class and capabilites.
  */
-public class SearchEngineTest {
-
-
+public class TestSearchEngine {
     /**
      * Instance variables
      */
@@ -52,7 +41,7 @@ public class SearchEngineTest {
 
     @Test
     public void testFilterWifiFlights() throws Exception{
-        ArrayList<Flight> filteredWifiList = searchEngine.filterFlightList(flightListAll,"01.01.2016", "30.12.2016",false,true,false,0);
+        ArrayList<Flight> filteredWifiList = searchEngine.filterFlightList(flightListAll,"2016-01-01", "2016-12-30",false,true,false,0);
 
         for(Flight flight : filteredWifiList){
             assertEquals(true, flight.getPassengerLuxuries().isWifiAvailable());
@@ -61,7 +50,7 @@ public class SearchEngineTest {
 
     @Test
     public void testDescendingPriceOrder() throws Exception{
-        ArrayList<Flight> filteredDescendingList = searchEngine.filterFlightList(flightListAll,"01.01.2016", "30.12.2016",false, false, true, 0);
+        ArrayList<Flight> filteredDescendingList = searchEngine.filterFlightList(flightListAll,"2016-01-01", "2016-12-30",false, false, true, 0);
 
         //Some large value here that is guaranteed to be larger than the most expensive flight
         double oldPrice = 1000000000;
@@ -73,8 +62,21 @@ public class SearchEngineTest {
     }
 
     @Test
+    public void testAscendingPriceOrder() throws Exception{
+        ArrayList<Flight> filteredAscendingList = searchEngine.filterFlightList(flightListAll,"2016-01-01", "2016-12-30",false, false, false, 0);
+
+        // Negative value guaranteed to be lower than least expensive flight
+        double tmpPrice = 0;
+
+        for(Flight flight : filteredAscendingList){
+            assertTrue(flight.getPrice() >= tmpPrice);
+            tmpPrice = flight.getPrice();
+        }
+    }
+
+    @Test
     public void testSagaAvailability() throws Exception{
-        ArrayList<Flight>  filteredSagaList = searchEngine.filterFlightList(flightListAll,"01.01.2016", "30.12.2016",true,false,false,0);
+        ArrayList<Flight>  filteredSagaList = searchEngine.filterFlightList(flightListAll,"2016-01-01", "2016-12-30",true,false,false,0);
         for (Flight flight : filteredSagaList){
             int numAvailableSagaSeats = flight.getNumSagaSeats()-flight.getBookedSagaSeats();
             assertTrue(numAvailableSagaSeats > 0);
@@ -83,8 +85,8 @@ public class SearchEngineTest {
 
     @Test
     public void testWithinDateFrame() throws Exception{
-        String dateFromString = "03.04.2016";
-        String dateToString = "04.04.2016";
+        String dateFromString = "2016-04-03";
+        String dateToString = "2016-04-04";
         Date dateFrom = format.parse(dateFromString);
         Date dateTo = format.parse(dateToString);
 

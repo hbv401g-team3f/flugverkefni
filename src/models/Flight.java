@@ -12,7 +12,9 @@ package models;
  */
 public class Flight implements Comparable<Flight>{
 
-
+    /**
+     * Instance variables
+     */
     private double price;
     private String flightNumber;
     private String departureLoc;
@@ -32,23 +34,26 @@ public class Flight implements Comparable<Flight>{
 
     /**
      * The flight constructor with all of it's properties
-     * @param departureDate
-     * @param price
-     * @param flightNumber
-     * @param departureLoc
-     * @param departureTime
-     * @param depAirportId
-     * @param arrivalLoc
-     * @param arrivalDate
-     * @param arrivalTime
-     * @param arrAirportId
-     * @param numSeats
-     * @param bookedSeats
-     * @param numSagaSeats
-     * @param bookedSagaSeats
-     * @param connectFlight
-     * @param passengerLuxBool
-     * @param passengerLuxInt
+     * @param departureDate String of format "yyyy-mm-dd"
+     * @param price Double containing price of flight in unspecified currency
+     * @param flightNumber String with number of flight, often of format [A-Z]\{2}[0-9]\{3}
+     * @param departureLoc String containing name of departure location
+     * @param departureTime String containing local departure time in format "hh:mm:ss"
+     * @param depAirportId String containing 3 letter international identification tag for departure airport
+     * @param arrivalLoc String containing name of arrival location
+     * @param arrivalDate String of format "yyyy-mm-dd"
+     * @param arrivalTime String containing local arrival time in format "hh:mm:ss"
+     * @param arrAirportId String containing 3 letter international identification tag for departure airport
+     * @param numSeats Int variable representing total amount of economy class seats on flight
+     * @param bookedSeats Int variable representing total amount of economy class seats already booked
+     * @param numSagaSeats Int variable representing total amount of business class seats on flight
+     * @param bookedSagaSeats Int variable representing total amount of business class seats already booked
+     * @param connectFlight Custom Object containing data on layovers for connected flights.
+     * @param passengerLuxBool Boolean array determining whether wifi is available and whether meals are
+     *                         available in flight. See PassengerLuxuries.java for further information.
+     * @param passengerLuxInt Integer array for determining how much a flight ticket costs in flight points
+     *                        and how many flight points are gained by flying. See
+     *                        PassengerLuxuries.java for further information.
      */
     public Flight(String departureDate, double price, String flightNumber, String departureLoc, String departureTime,
                   String depAirportId, String arrivalLoc, String arrivalDate, String arrivalTime, String arrAirportId,
@@ -100,17 +105,14 @@ public class Flight implements Comparable<Flight>{
         return comparePrice - (int) this.getPrice();
     }
 
-    /**
-     * Returns if the flight is connected or not.
-     * @return
+    /*
+        GET/SET  METHODS
      */
+
     private boolean isConnectedFlight() {
         return getConnectFlight() == null;
     }
 
-    /**
-     * Instance variables for various flight properties.
-     */
     public double getPrice() {
         return price;
     }
@@ -238,9 +240,4 @@ public class Flight implements Comparable<Flight>{
     public void setPassengerLuxuries(PassengerLuxuries passengerLuxuries) {
         this.passengerLuxuries = passengerLuxuries;
     }
-
-    /*
-        GET/SET  METHODS
-     */
-
 }

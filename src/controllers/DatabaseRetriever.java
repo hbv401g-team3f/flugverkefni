@@ -7,14 +7,9 @@ import java.util.ArrayList;
 import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
 import models.Flight;
 
-
-
-
 /**
- * This class isn't ready yet so
- * it is temporarily an interface so it
- * can serve as a guideline for the mock
- * database connection.
+ * Class for establishing a connection to MySQL database via JDBC to retrieve information regarding
+ * flights. Various methods for returning Flight objects.
  */
 public class DatabaseRetriever {
 
@@ -29,20 +24,28 @@ public class DatabaseRetriever {
     public DatabaseRetriever() {
     }
 
-
-
+    /**
+     * Retrieves flights from MySQL database with given parameters.
+     * @param departureDate Date of departure on format "yyyy-mm-dd"
+     * @param departureLocation Name of location of departure
+     * @param arrivalLocation Name of loacation of arrival
+     * @param passengerQty Amount of bookable seats on flight
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Flight> retrieveFlightsByCriteria(String departureDate, String departureLocation, String arrivalLocation, int passengerQty) throws SQLException {
 
 
         ArrayList<Flight> flightList = new ArrayList<>();
 
+        // SQL query formation and sanitization
         String queryString = "SELECT * FROM flight f LEFT JOIN connect_flight c ON c.departureDate = f.departureDate " +
                 "AND c.flightNumber = f.flightNumber LEFT JOIN passenger_luxuries p ON p.departureDate = f.departureDate " +
                 "AND p.flightNumber = f.flightNumber WHERE f.departureDate = ? " +
                 "AND f.departureLoc = ? AND f.arrivalLoc = ? AND ((f.numSeats+f.numSagaSeats)-(f.bookedSeats+f.bookedSagaSeats-?))>0";
 
         try {
-
+            // Retrieve JDBC driver
             try {
                 Class.forName(JDBC_DRIVER);
             }catch (ClassNotFoundException e){
