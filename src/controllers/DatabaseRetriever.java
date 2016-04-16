@@ -3,56 +3,56 @@ package controllers;
 
 import java.sql.*;
 import java.util.ArrayList;
-
-import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
 import models.Flight;
 
-
-
-
 /**
- * This class isn't ready yet so
- * it is temporarily an interface so it
- * can serve as a guideline for the mock
- * database connection.
+ * Class for establishing a connection to MySQL database via JDBC to retrieve information regarding
+ * flights. Various methods for returning Flight objects.
  */
 public class DatabaseRetriever {
 
 
-    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String DATABASE_URL = "jdbc:mysql://localhost/database_retriever";
-    private static final String USER = "";
-    private static final String PASS = "";
+    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    static final String DATABASE_URL = "jdbc:mysql://localhost/database_retriever?autoReconnect=true&useSSL=false";
+
+    static final String USER = "root";
+    static final String PASS = "Rassapi7904";
 
 
     public DatabaseRetriever() {
     }
 
-
-
+    /**
+     * Retrieves flights from MySQL database with given parameters.
+     * @param departureDate Date of departure on format "yyyy-MM-dd"
+     * @param departureLocation Name of location of departure
+     * @param arrivalLocation Name of loacation of arrival
+     * @param passengerQty Amount of bookable seats on flight
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Flight> retrieveFlightsByCriteria(String departureDate, String departureLocation, String arrivalLocation, int passengerQty) throws SQLException {
 
 
         ArrayList<Flight> flightList = new ArrayList<>();
 
+        // SQL query formation and sanitization
         String queryString = "SELECT * FROM flight f LEFT JOIN connect_flight c ON c.departureDate = f.departureDate " +
                 "AND c.flightNumber = f.flightNumber LEFT JOIN passenger_luxuries p ON p.departureDate = f.departureDate " +
                 "AND p.flightNumber = f.flightNumber WHERE f.departureDate = ? " +
                 "AND f.departureLoc = ? AND f.arrivalLoc = ? AND ((f.numSeats+f.numSagaSeats)-(f.bookedSeats+f.bookedSagaSeats-?))>0";
 
         try {
-
+            // Retrieve JDBC driver
             try {
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName(JDBC_DRIVER);
             }catch (ClassNotFoundException e){
                 System.out.println(e.getMessage());
             }
 
-            System.out.println("Establishing a connection to the DB)");
             Connection conn = DriverManager.getConnection(DATABASE_URL, USER, PASS);
-            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/database_retriever","root","Rassapi7904");
 
-            //System.out.println("Creating statement...");
+            System.out.println("Creating statement...");
             PreparedStatement statement = conn.prepareStatement(queryString);
             statement.setString(1, departureDate);
             statement.setString(2, departureLocation);
@@ -62,12 +62,6 @@ public class DatabaseRetriever {
             ArrayList<Flight> flightResults = new ArrayList<>();
 
             while (results.next()) {
-                /*
-                * Initialize value arrays for connectFlight objects and passengerLuxuries objects
-                * */
-
-
-
                 /*
                 * Extract data from resultSet
                  */
@@ -114,9 +108,6 @@ public class DatabaseRetriever {
                         numSagaSeats, bookedSagaSeats, connectFlight, passengerLuxBool, passengerLuxInt);
 
                 flightResults.add(tmpFlight);
-
-              //  System.out.println("Flight object added.");
-              //  System.out.println("Flight number added: " + tmpFlight.getFlightNumber());
             }
 
             flightList = flightResults;

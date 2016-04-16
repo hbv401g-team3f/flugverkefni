@@ -25,12 +25,7 @@ public class SearchEngine {
     private ArrayList<Flight> flightList;
     private ArrayList<Flight> filteredFlightList;
     private int passengerQty;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-
-    /**
-     * Constructor for SearchEngine class
-     * @param DBConnection
-     */
+    private SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
 
     public SearchEngine(){
         DBConnection = new DatabaseRetriever();
@@ -38,13 +33,14 @@ public class SearchEngine {
 
     /**
      *  Search for flights given some criterias
-     * @param departureDate
-     * @param departureLocation
-     * @param arrivalLocation
-     * @param passengerQty
-     * @return
+     * @param departureDate String containing date of departure on format "yyyy-MM-dd"
+     * @param departureLocation String containing name of departure location
+     * @param arrivalLocation String containing name of arrival location
+     * @param passengerQty Integer representing amount of minimum amount of free seats
+     * @return Returns ArrayList of type <Flight>
      */
     public ArrayList<Flight> searchFlightByCriteria(String departureDate, String departureLocation, String arrivalLocation, int passengerQty){
+        // Connect to MySQL database and retrieve relevant data
         try{
             flightList = DBConnection.retrieveFlightsByCriteria(departureDate, departureLocation, arrivalLocation, passengerQty);
         } catch (Exception e){
@@ -57,36 +53,38 @@ public class SearchEngine {
     /**
      * Method for further narrowing of already created list of Flight objects. Allows further
      * specifications to be made on what flights are included.
-     * @param flightListToFilter
-     * @param dateFrom
-     * @param dateTo
-     * @param wantSagaSeats
-     * @param wantWifi
-     * @param priceDescending
-     * @param maxPrice
-     * @return
+     * @param flightListToFilter Array list of type Flight containing flights to be narrowed down
+     *                           with set parameters
+     * @param timeFrom String containing earliest time possible for flight on format "hh:mm:ss"
+     * @param timeTo String containing latest time possible for flight on format "hh:mm:ss"
+     * @param wantSagaSeats Boolean determining whether only business class flights are shown
+     * @param wantWifi Boolean determining whether only flights with WiFi capabilities are shown
+     * @param priceDescending Boolean determining whether flights are shown in descending order with
+     *                        regard to price
+     * @param maxPrice Integer determining maximum price of flights to be shown
+     * @return Returns ArrayList of type <Flight> with regard to above stated parameters
      */
 
-    public ArrayList<Flight> filterFlightList(ArrayList<Flight> flightListToFilter, String dateFrom, String dateTo, boolean wantSagaSeats, boolean wantWifi, boolean priceDescending, int maxPrice){
+    public ArrayList<Flight> filterFlightList(ArrayList<Flight> flightListToFilter, String timeFrom, String timeTo, boolean wantSagaSeats, boolean wantWifi, boolean priceDescending, int maxPrice){
 
         filteredFlightList = new ArrayList<Flight>();
         for(Flight flight : flightListToFilter){
             // Determines if the flight is within specified parameters
             boolean flightEligible = true;
             // Desired date restricitions
-            Date dateFromWanted = new Date();
-            Date dateToWanted = new Date();
-            Date flightDate = new Date();
+            Date timeFromWanted = new Date();
+            Date timeToWanted = new Date();
+            Date flightDepTime = new Date();
             try {
-                dateFromWanted = dateFormat.parse(dateFrom);
-                dateToWanted = dateFormat.parse(dateTo);
-                flightDate = dateFormat.parse(flight.getDepartureDate());
+                timeFromWanted = timeFormat.parse(timeFrom);
+                timeToWanted = timeFormat.parse(timeTo);
+                flightDepTime = timeFormat.parse(flight.getDepartureTime());
             } catch(ParseException e) {
                 System.err.println("String to Date parsing error:" + e.getMessage());
             }
 
             // Dates of flight available
-            if(dateFromWanted.compareTo(flightDate) >= 0 && dateToWanted.compareTo(flightDate) <= 0){
+            if(timeFromWanted.compareTo(flightDepTime) >= 0 && timeToWanted.compareTo(flightDepTime) <= 0){
                 flightEligible = false;
             }
 
@@ -106,6 +104,7 @@ public class SearchEngine {
                 flightEligible = false;
             }
 
+            // Add flight to list if it passes all conditions
             if(flightEligible){
                 filteredFlightList.add(flight);
             }
