@@ -12,11 +12,10 @@ import models.Flight;
 public class DatabaseRetriever {
 
 
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DATABASE_URL = "jdbc:mysql://localhost/database_retriever?autoReconnect=true&useSSL=false";
-
-    static final String USER = "root";
-    static final String PASS = "Rassapi7904";
+    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost/database_retriever?autoReconnect=true&useSSL=false";
+    private static final String USER = "";
+    private static final String PASS = "";
 
 
     public DatabaseRetriever() {

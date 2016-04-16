@@ -7,7 +7,7 @@ import java.sql.*;
 
 public class DatabaseUpdater {
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String DATABASE_URL = "jdbc:mysql://localhost/database_retriever";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost/database_retriever?autoReconnect=true&useSSL=false";
     private static final String USER = "";
     private static final String PASS = "";
 
@@ -24,7 +24,7 @@ public class DatabaseUpdater {
         String departureDate = flightToBook.getDepartureDate();
         try {
             try {
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName(JDBC_DRIVER);
             }catch (ClassNotFoundException e){
                 System.out.println(e.getMessage());
             }
